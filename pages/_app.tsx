@@ -1,5 +1,5 @@
 import {NextComponentType, NextPageContext} from "next";
-import Router from "next/router";
+import Router, {useRouter} from "next/router";
 import NProgress from "nprogress";
 import {NextIntlProvider} from "next-intl";
 
@@ -18,6 +18,9 @@ import "swiper/components/navigation/navigation.min.css";
 import "swiper/components/pagination/pagination.min.css";
 import "swiper/components/scrollbar/scrollbar.min.css";
 import {toast, ToastContainer} from "react-toastify";
+import {useEffect} from "react";
+import {getCookie} from "cookies-next";
+import jsx from "acorn-jsx";
 
 
 Router.events.on("routeChangeStart", () => NProgress.start());
@@ -33,6 +36,13 @@ type AppCustomProps = {
 
 
 const MyApp = ({Component, pageProps}: AppCustomProps) => {
+    const router = useRouter()
+    useEffect(()=>{
+        const initialCookie = getCookie("user")
+        const user =initialCookie && JSON.parse(initialCookie as string)
+        const token = user?.token
+        if (!token) router.push("/")
+    },[])
 
     return (
         <NextIntlProvider messages={pageProps?.messages}>

@@ -20,9 +20,9 @@ const Button: FC<Props> = ({
 }) => {
   let btnSize = "";
   if (size === "sm") {
-    btnSize = "py-2 sm:py-1 px-5";
+    btnSize = "py-2 sm:py-1 px-5 text-sm";
   } else if (size === "lg") {
-    btnSize = "py-3 sm:py-2 px-6";
+    btnSize = "py-3 sm:py-2 px-6 text-lg";
   } else {
     btnSize = "py-4 sm:py-3 px-7 text-xl";
   }
@@ -31,7 +31,7 @@ const Button: FC<Props> = ({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`text-xl sm:text-base ${btnSize} border border-gray500 ${
+      className={` sm:text-base ${btnSize} border border-gray500 ${
         disabled
           ? "bg-gray400 text-gray300 cursor-not-allowed"
           : "bg-gray500 text-gray100 hover:text-gray300"

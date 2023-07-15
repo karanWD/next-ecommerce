@@ -28,9 +28,14 @@ export type commonType = {
 };
 
 export interface itemType extends commonType {
+  sizeId?:string
+  totalSizeWeight?:number
+  weight?:number
+  colors?:any[]
   img1?: string;
   img2?: string;
   categoryName?: string;
+
 }
 
 export interface apiProductsType extends commonType {
@@ -42,6 +47,10 @@ export type cartFuncType = (item: itemType) => void;
 
 export type cartType = {
   cart: itemType[];
+  totalWeight?:number
+  wage?:number
+  totalProductWeightWithWage?:number
+  totalProductWeight?:number
   addItem?: cartFuncType;
   addOne?: cartFuncType;
   removeItem?: cartFuncType;

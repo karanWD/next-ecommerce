@@ -9,6 +9,7 @@ import {getCookie} from "cookies-next";
 import CategoryContainer from "../components/Containers/CategoryContainer/CategoryContainer";
 import AboutUsContainer from "../components/Containers/AboutUsContainer/AboutUsContainer";
 import ProductsContainer from "../components/Containers/ProductsContainer/ProductsContainer";
+import useFetch from "../hooks/useFetch";
 
 type CatItemsType = {
     images: string[],
@@ -18,44 +19,40 @@ type CatItemsType = {
     _id: string,
     isActive: boolean,
     products?: any[]
+    hasSubCategories:boolean
 };
 
-const config = {
-    headers: {Authorization: `Bearer ${getCookie("user") && JSON.parse(getCookie("user") as string).token}`}
-};
+
 
 const Home = () => {
     const t = useTranslations("Index");
-    const [data, setData] = useState<CatItemsType[]>([]);
-    const [isFetching, setIsFetching] = useState(false);
+    const {request,response,isLoaded,error}=useFetch()
 
     useEffect(() => {
-        const fetchData = async () => {
-            const res = await axios.get(ApiRoutes.BASE_URL + ApiRoutes.CLIENT_CATEGORIES, config);
-            const fetchedData = res.data;
-            setData(fetchedData);
-            setIsFetching(false);
-        };
-        fetchData();
-    }, [isFetching, data.length]);
+            request({
+                url:ApiRoutes.CLIENT_CATEGORIES
+            })
+    }, []);
 
 
     return (
+
         <>
             <Header/>
-            <main id="main-content">
-                <Slideshow/>
-                <CategoryContainer data={data.slice(0, 4)}/>
-                <ProductsContainer title={t("best_selling")}
-                                   desc={t("best_selling_desc")}
-                                   products={data.slice(9, 10)[0]?.products}/>
-                <CategoryContainer data={data.slice(4, 8)}/>
-                <div className="border-gray100 border-b-2"></div>
-                <AboutUsContainer title={t("about_us")}
-                                  desc={t("about_us_desc")}/>
-            </main>
-
-
+            {
+                isLoaded && response &&
+                <main id="main-content">
+                    <Slideshow/>
+                    <CategoryContainer data={response?.slice(0, 4)}/>
+                    <ProductsContainer title={t("best_selling")}
+                                       desc={t("best_selling_desc")}
+                                       products={response.slice(9, 10)[0]?.products}/>
+                    <CategoryContainer data={response.slice(4, 8)}/>
+                    <div className="border-gray100 border-b-2"></div>
+                    <AboutUsContainer title={t("about_us")}
+                                      desc={t("about_us_desc")}/>
+                </main>
+            }
         </>
     );
 };

@@ -16,28 +16,28 @@ type categoryType = {
 }
 type fetchType = {
     request:(axiosParams: AxiosRequestConfig<any>) => void,
-    data:categoryType,
+    response:categoryType,
     error:any | null
     isLoaded:boolean
 }
 
 const SubCategoryPage = () => {
     const router = useRouter()
-    const {subcategory} = router.query
-    const {data, error, isLoaded, request}:fetchType = useFetch()
+    const {category} = router.query
+    const {response, error, isLoaded, request}:fetchType = useFetch()
 
     useEffect(() => {
-        subcategory &&
+        category &&
         request({
-            url:ApiRoutes.CLIENT_CATEGORIES+"/"+subcategory+"/products"
+            url:ApiRoutes.CLIENT_CATEGORIES+"/"+category+"/products"
         })
-    }, [subcategory])
+    }, [category])
 
     return (
         <>
             <Header/>
             <div className='grid grid-cols-4 gap-2 p-2'>
-                {data && isLoaded && data.products.map((item, index) => {
+                {response && isLoaded && response.products.map((item, index) => {
                     return (
                         <div key={'CAT_PAGE_ITEM_' + index} className=' col-span-2 md:col-span-2'>
                             <ProductItem image={item.thumbnail} name={item.title} link={"products/"+item.slug} weight={"8-18"} wage={"40"}/>

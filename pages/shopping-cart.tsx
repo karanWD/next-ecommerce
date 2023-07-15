@@ -4,16 +4,12 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 
 import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
-import LeftArrow from "../public/icons/LeftArrow";
-import Button from "../components/Buttons/Button";
 import GhostButton from "../components/Buttons/GhostButton";
 import { GetStaticProps } from "next";
 import { roundDecimal } from "../components/Util/utilFunc";
 import { useCart } from "../context/cart/CartProvider";
 import { useRouter } from "next/router";
 
-// let w = window.innerWidth;
 
 const ShoppingCart = () => {
   const t = useTranslations("CartWishlist");
@@ -33,25 +29,9 @@ const ShoppingCart = () => {
   return (
     <div>
       {/* ===== Head Section ===== */}
-      <Header title={`Shopping Cart - Haru Fashion`} />
+      <Header title={`سبدخرید - فرووشگاه تیــارا`} />
 
       <main id="main-content">
-        {/* ===== Heading & Continue Shopping */}
-        <div className="app-max-width px-4 sm:px-8 md:px-20 w-full border-t-2 border-gray100">
-          <h1 className="text-2xl sm:text-4xl text-center sm:text-left mt-6 mb-2 animatee__animated animate__bounce">
-            {t("shopping_cart")}
-          </h1>
-          <div className="mt-6 mb-3">
-            <Link href="/">
-              <a className="inline-block">
-                <LeftArrow size="sm" extraClass="inline-block" />{" "}
-                {t("continue_shopping")}
-              </a>
-            </Link>
-          </div>
-        </div>
-
-        {/* ===== Cart Table Section ===== */}
         <div className="app-max-width px-4 sm:px-8 md:px-20 mb-14 flex flex-col lg:flex-row">
           <div className="h-full w-full lg:w-4/6 mr-4">
             <table className="w-full mb-6">
@@ -62,7 +42,7 @@ const ShoppingCart = () => {
                   </th>
                   <th
                     className={`font-normal py-2 hidden sm:block ${
-                      cart.length === 0 ? "text-center" : "text-right"
+                      cart?.products.length === 0 ? "text-center" : "text-right"
                     }`}
                   >
                     {t("unit_price")}
@@ -81,8 +61,8 @@ const ShoppingCart = () => {
                     <td colSpan={5}>{t("cart_is_empty")}</td>
                   </tr>
                 ) : (
-                  cart.map((item) => {
-                    subtotal += item.price * item.qty!;
+                  cart?.products.map((item) => {
+                    subtotal += item?.price * item?.qty!;
                     return (
                       <tr className="border-b-2 border-gray200" key={item.id}>
                         <td className="my-3 flex flex-col xl:flex-row items-start sm:items-center xl:space-x-2 text-center xl:text-left">
@@ -90,13 +70,13 @@ const ShoppingCart = () => {
                             href={`/products/${encodeURIComponent(item.id)}`}
                           >
                             <a>
-                              <Image
-                                src={item.img1 as string}
-                                alt={item.name}
-                                width={95}
-                                height={128}
-                                className="h-32 xl:mr-4"
-                              />
+                              {/*<Image*/}
+                              {/*  src={item?.img1 as string}*/}
+                              {/*  alt={item?.name}*/}
+                              {/*  width={95}*/}
+                              {/*  height={128}*/}
+                              {/*  className="h-32 xl:mr-4"*/}
+                              {/*/>*/}
                             </a>
                           </Link>
                           <span>{item.name}</span>
@@ -154,86 +134,21 @@ const ShoppingCart = () => {
               </GhostButton>
             </div>
           </div>
-          <div className="h-full w-full lg:w-4/12 mt-10 lg:mt-0">
-            {/* Cart Totals */}
+          <div className="h-full w-full lg:w-4/12 mt-10 lg:mt-0 text-right">
             <div className="border border-gray500 divide-y-2 divide-gray200 p-6">
-              <h2 className="text-xl mb-3">{t("cart_totals")}</h2>
+              <h2 className="text-xl mb-3">{t("invoice")}</h2>
               <div className="flex justify-between py-2">
+                <span>{roundDecimal(subtotal)}</span>
                 <span className="uppercase">{t("subtotal")}</span>
-                <span>$ {roundDecimal(subtotal)}</span>
-              </div>
-              <div className="py-3">
-                <span className="uppercase">{t("delivery")}</span>
-                <div className="mt-3 space-y-2">
-                  <div className="flex justify-between">
-                    <div>
-                      <input
-                        type="radio"
-                        name="deli"
-                        value="Pickup"
-                        id="pickup"
-                        checked={deli === "Pickup"}
-                        onChange={() => setDeli("Pickup")}
-                      />{" "}
-                      <label htmlFor="pickup" className="cursor-pointer">
-                        {t("store_pickup")}
-                      </label>
-                    </div>
-                    <span>{t("free")}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <div>
-                      <input
-                        type="radio"
-                        name="deli"
-                        value="Yangon"
-                        id="ygn"
-                        checked={deli === "Yangon"}
-                        onChange={() => setDeli("Yangon")}
-                        // defaultChecked
-                      />{" "}
-                      <label htmlFor="ygn" className="cursor-pointer">
-                        {t("within_yangon")}
-                      </label>
-                    </div>
-                    <span>$ 2.00</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <div>
-                      <input
-                        type="radio"
-                        name="deli"
-                        value="Others"
-                        id="others"
-                        checked={deli === "Others"}
-                        onChange={() => setDeli("Others")}
-                      />{" "}
-                      <label htmlFor="others" className="cursor-pointer">
-                        {t("other_cities")}
-                      </label>
-                    </div>
-                    <span>$ 7.00</span>
-                  </div>
-                </div>
               </div>
               <div className="flex justify-between py-3">
+                <span> {roundDecimal(subtotal + deliFee)}</span>
                 <span>{t("grand_total")}</span>
-                <span>$ {roundDecimal(subtotal + deliFee)}</span>
               </div>
-              <Button
-                value={t("proceed_to_checkout")}
-                size="xl"
-                extraClass="w-full"
-                onClick={() => router.push(`/checkout`)}
-                disabled={cart.length < 1 ? true : false}
-              />
             </div>
           </div>
         </div>
       </main>
-
-      {/* ===== Footer Section ===== */}
-      <Footer />
     </div>
   );
 };

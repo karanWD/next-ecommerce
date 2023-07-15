@@ -11,7 +11,7 @@ import {CategoryType} from "../../types";
 
 type fetchType = {
     request:(axiosParams: AxiosRequestConfig<any>) => void,
-    data:CategoryType,
+    response:CategoryType,
     error:any | null
     isLoaded:boolean
 }
@@ -19,7 +19,7 @@ const CategoryPage = () => {
 
     const router = useRouter()
     const {category} = router.query
-    const {request, data, error, isLoaded}:fetchType = useFetch()
+    const {request, response, error, isLoaded}:fetchType = useFetch()
 
     useEffect(() => {
         category &&
@@ -30,15 +30,14 @@ const CategoryPage = () => {
     return (
         <>
             <Header/>
-            {error && alert(error)}
             {
-                isLoaded && data &&
+                isLoaded && response &&
                 <div className='grid grid-cols-4 gap-2 p-2'>
-                    {data.subCategories.map((item, index) => {
+                    {response.subCategories.map((item, index) => {
                         return (
                             <div key={'CAT_PAGE_ITEM_' + index} className=' col-span-2 md:col-span-2'>
                                 <CategoryItem title={item.title} img={item.thumbnail} name={item.slug}
-                                              link={"/" + category + "/" + item.slug}/>
+                                              link={"/"+item.slug+(item.hasSubCategories?"":"/products" )}/>
                             </div>
                         )
                     })}

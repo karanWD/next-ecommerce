@@ -46,10 +46,7 @@ const UseFetch = () => {
                 response: null,
                 error: e
             });
-            toast.error("خطا در درخواست",{
-                theme:"colored",
-                position:toast.POSITION.BOTTOM_CENTER
-            })
+            toast.error("خطا در درخواست")
             return Promise.reject(e.message)
         }
     };
