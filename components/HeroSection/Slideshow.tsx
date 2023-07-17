@@ -1,57 +1,19 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-
 import TextButton from "../Buttons/TextButton";
 import styles from "./Hero.module.css";
-
-// swiperjs
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// import Swiper core and required modules
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper/core";
 import {FC} from "react";
 
-// install Swiper modules
 SwiperCore.use([Pagination, Navigation, Autoplay]);
 
-const sliders = [
-  {
-    id: 2,
-    image: "/images/img1.png",
-    imageTablet: "/images/img1.png",
-    imageMobile: "/images/img1.png",
-    subtitle: "50% تخفیف",
-    titleUp: "جدیدترین ها",
-    titleDown: "جواهرات",
-    rightText: false,
-  },
-  {
-    id: 1,
-    image: "/images/img1.png",
-    imageTablet: "/images/img1.png",
-    imageMobile: "/images/img1.png",
-    subtitle: "جدیدترین ها",
-    titleUp: "ست شب",
-    titleDown: "دستبند",
-    rightText: true,
-  },
-  {
-    id: 3,
-    image: "/images/img1.png",
-    imageTablet: "/images/img1.png",
-    imageMobile: "/images/img1.png",
-    subtitle: "جدیدترین ها",
-    titleUp: "ست شب",
-    titleDown: "دستبند",
-    rightText: false,
-  },
-];
 type ImageItemType = {
   image: string,
-  subtitle: string,
-  titleUp:string,
-  titleDown: string,
-  rightText: false,
+  subtitle?: string,
+  titleUp?:string,
+  titleDown?: string,
+  rightText?: false,
 }
 type Props={
   images:ImageItemType[]
@@ -83,7 +45,7 @@ const Slideshow:FC<Props> = ({images}) => {
               <div className="hidden lg:block">
                 <Image
                   layout="responsive"
-                  src={slider.image}
+                  src={slider?.image??"/images/img1.png"}
                   width={572}
                   height={572}
                   alt={"some name"}
@@ -92,7 +54,7 @@ const Slideshow:FC<Props> = ({images}) => {
               <div className="hidden sm:block lg:hidden">
                 <Image
                   layout="responsive"
-                  src={slider.image}
+                  src={slider?.image??"/images/img1.png"}
                   width={720}
                   height={720}
                   alt={"some name"}
@@ -101,7 +63,7 @@ const Slideshow:FC<Props> = ({images}) => {
               <div className="sm:hidden">
                 <Image
                   layout="responsive"
-                  src={slider.image}
+                  src={slider?.image??"/images/img1.png"}
                   width={800}
                   height={800}
                   alt={"some name"}

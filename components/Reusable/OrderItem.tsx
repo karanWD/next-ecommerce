@@ -1,28 +1,53 @@
 import React, {FC} from 'react';
 import LeftArrow from "../../public/icons/LeftArrow";
 
-type Props = {
-    date: string
-    status: string
-    totalWeight: string
-    productsCount: string
+type OrderItem = {
+  createdAt: string
+  numberOfProducts: number
+  status: "NEW" | "PENDING" | "ACCEPTED" | "CANCELED" | "DELIVERED"
+  totalWeightWithWage: string
 }
-const OrderItem: FC<Props> = ({date, status, totalWeight, productsCount}) => {
-    return (
-        <div className="flex flex-row-reverse items-center justify-between p-4 border-b border-gray-200 ">
-            <div className="flex flex-col flex-1 text-right">
-                <div className="">{date}سفارش -</div>
-                <div className="flex flex-row-reverse items-center gap-2">
-                    <span className="py-0.5 px-2 text-xs text-gray400 bg-gray-100">{totalWeight}مجموع وزن: </span>
-                    <span className="py-0.5 px-2 text-xs text-gray400 bg-gray-100">{productsCount} تعداد: </span>
-                    <span></span>
-                </div>
-            </div>
-            <div className="text-gray-400 ">
-                <LeftArrow size={"sm"}/>
-            </div>
+
+const STATUSES = {
+  "NEW": {
+    title: "جدید",
+    style: "bg-blue-100 text-blue-400"
+  },
+  "PENDING": {
+    title: "درحال بررسی",
+    style: "bg-orange-100 text-orange-400"
+  },
+  "ACCEPTED": {
+    title: "ثبت شده",
+    style: "bg-emerald-100 text-emerald-400"
+  },
+  "CANCELED": {
+    title: "لغو شده",
+    style: "bg-red-100 text-red-400"
+  },
+  "DELIVERED": {
+    title: "ارسال شده",
+    style: "bg-gray-100 text-gray-400"
+  }
+}
+
+const OrderItem: FC<OrderItem> = ({createdAt, status, totalWeightWithWage, numberOfProducts}) => {
+  const STYLE = STATUSES[status].style + " " + "text-sm py-0.25 px-3"
+  return (
+      <div className="flex flex-row-reverse items-center justify-between p-4 border-b border-gray-200 ">
+        <div className="flex flex-col flex-1 text-right">
+          <div className="rtl">سفارش - {new Date(createdAt).toLocaleString("fa-ir")}</div>
+          <div className="flex flex-row-reverse items-center gap-1.5 mt-2">
+            <span className={STYLE}>{STATUSES[status].title}</span>
+            <span className="  py-0.25 px-3 text-sm text-gray400 bg-gray-100 rtl"> مجموع وزن: {totalWeightWithWage}</span>
+            <span className="  py-0.25 px-3 text-sm text-gray400 bg-gray-100 rtl"> تعداد: {numberOfProducts}</span>
+          </div>
         </div>
-    );
+        <div className="text-gray-600 ">
+          <LeftArrow size={"sm"}/>
+        </div>
+      </div>
+  );
 };
 
 export default OrderItem;

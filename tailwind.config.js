@@ -1,6 +1,5 @@
 module.exports = {
-  purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
-  darkMode: false, // or 'media' or 'class'
+  content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   theme: {
     screens: {
       sm: "576px",
@@ -38,24 +37,9 @@ module.exports = {
         gray300: "#C1C1C1",
         gray400: "#686868",
         gray500: "#282828",
-        red: "#F05454",
-        yellow: "#F5B461",
-        green: "#9BDEAC",
-        blue: "#66BFBF",
         lightgreen: "#F2FDFB",
       },
     },
-  },
-  variants: {
-    extend: {
-      transform: ["group-hover"],
-      scale: ["group-hover"],
-      transitionDuration: ["group-hover"],
-      letterSpacing: ["group-hover"],
-      width: ["group-hover"],
-      borderColor: ["group-hover"],
-    },
-    // divideColor: ['group-hover'],
   },
   plugins: [],
 };

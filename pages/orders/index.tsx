@@ -3,78 +3,69 @@ import {GetStaticProps} from "next";
 import useFetch from "../../hooks/useFetch";
 import Header from "../../components/Header/Header";
 import LoadingPage from "../../components/Reusable/LoadingPage";
-import OrderItem from "../../components/Reusable/OrderItem";
 import Link from "next/link";
+import {ApiRoutes} from "../../enums/ApiRoutes";
+import OrderItem from "../../components/Reusable/OrderItem"
+import {roundDecimal} from "../../components/Util/utilFunc";
 
-const temp = [
-    {
-        date: "",
-        productsCount: "",
-        id: "",
-        status: "",
-        totalWeightWithWage: ""
-    },
-    {
-        date: "",
-        productsCount: "",
-        id: "",
-        status: "",
-        totalWeightWithWage: ""
-    },
-    {
-        date: "",
-        productsCount: "",
-        id: "",
-        status: "",
-        totalWeightWithWage: ""
-    },
-    {
-        date: "",
-        productsCount: "",
-        id: "sss",
-        status: "",
-        totalWeightWithWage: ""
-    },
-]
-
+type OrderItemType = {
+  id: string
+  createdAt: string
+  numberOfProducts: number
+  status: "NEW" | "PENDING" | "ACCEPTED" | "CANCELED" | "DELIVERED"
+  totalWeight: number
+  totalWeightWithWage: number
+  _id: string
+}
+type Orders = { orders: OrderItemType[] }
 const OrdersPage = () => {
-    const {request, response} = useFetch()
-    useEffect(() => {
+  const {request, response, loading} = useFetch()
+  useEffect(() => {
+    request({url: ApiRoutes.USER_ORDERS})
+  }, [])
 
-    }, [])
+  return (
+      <>
+        <Header/>
+        <LoadingPage loaded={!loading && response}>
+          <div className="text-xl font-bold text-right p-4 pb-2 flex flex-row-reverse items-center gap-2">
+            <span>سفارشات</span>
+            <span className="flex text-sm">
+              (
+              <span>عدد</span>
+              <span>{response?.orders?.length}</span>
+              )
+            </span>
+          </div>
 
-    return (
-        <>
-            <Header/>
-            <LoadingPage loaded={true}>
-                {
-                    temp?.map((item, index) => {
-                        return (
-                            <Link href={"orders/"+item.id} key={"ORDER_ITEM_INDEX+" + index}>
-                                <a>
-                                    <OrderItem date={item.date} status={item.status}
-                                               totalWeight={item.totalWeightWithWage}
-                                               productsCount={item.productsCount}
-                                    />
-                                </a>
-                            </Link>
-                        )
-                    })
-                }
-            </LoadingPage>
-        </>
-    );
+          {
+            response?.orders?.map((item: OrderItemType, index: number) => {
+              return (
+                  <Link href={"orders/" + item._id} key={"ORDER_ITEM_INDEX+" + index}>
+                    <a>
+                      <OrderItem createdAt={item.createdAt} status={item.status}
+                                 totalWeightWithWage={roundDecimal(item.totalWeightWithWage)}
+                                 numberOfProducts={item.numberOfProducts}
+                      />
+                    </a>
+                  </Link>
+              )
+            })
+          }
+        </LoadingPage>
+      </>
+  );
 };
 
 export default OrdersPage;
 
 
 export const getStaticProps: GetStaticProps = async ({locale}) => {
-    return {
-        props: {
-            messages: {
-                ...require(`../../messages/common/${locale}.json`),
-            },
-        },
-    };
+  return {
+    props: {
+      messages: {
+        ...require(`../../messages/common/${locale}.json`),
+      },
+    },
+  };
 };
