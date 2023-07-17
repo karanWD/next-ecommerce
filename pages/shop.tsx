@@ -39,7 +39,7 @@ const Home = () => {
 
         <>
             <Header/>
-            <LoadingPage loaded={isLoaded && response.length>0}>
+            <LoadingPage loaded={isLoaded && response?.length>0}>
                 <main id="main-content">
                     <Slideshow/>
                     <CategoryContainer data={response?.slice(0, 4)}/>

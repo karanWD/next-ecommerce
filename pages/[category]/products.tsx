@@ -40,7 +40,7 @@ const SubCategoryPage = () => {
                 {response && isLoaded && response.products.map((item, index) => {
                     return (
                         <div key={'CAT_PAGE_ITEM_' + index} className=' col-span-2 md:col-span-2'>
-                            <ProductItem image={item.thumbnail} name={item.title} link={"products/"+item.slug} weight={"8-18"} wage={"40"}/>
+                            <ProductItem image={item.thumbnail} name={item.title} link={"/products/"+item.slug} weight={"8-18"} wage={"40"}/>
                         </div>
                     )
                 })}
