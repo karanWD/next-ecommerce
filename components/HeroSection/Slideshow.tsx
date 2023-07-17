@@ -9,6 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // import Swiper core and required modules
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper/core";
+import {FC} from "react";
 
 // install Swiper modules
 SwiperCore.use([Pagination, Navigation, Autoplay]);
@@ -45,8 +46,17 @@ const sliders = [
     rightText: false,
   },
 ];
-
-const Slideshow = () => {
+type ImageItemType = {
+  image: string,
+  subtitle: string,
+  titleUp:string,
+  titleDown: string,
+  rightText: false,
+}
+type Props={
+  images:ImageItemType[]
+}
+const Slideshow:FC<Props> = ({images}) => {
   const t = useTranslations("Index");
 
   return (
@@ -68,8 +78,8 @@ const Slideshow = () => {
           }}
           className="mySwiper"
         >
-          {sliders.map((slider) => (
-            <SwiperSlide key={slider.id}>
+          {images.map((slider,index) => (
+            <SwiperSlide key={"IMAGES_ITEM_"+index}>
               <div className="hidden lg:block">
                 <Image
                   layout="responsive"
@@ -82,7 +92,7 @@ const Slideshow = () => {
               <div className="hidden sm:block lg:hidden">
                 <Image
                   layout="responsive"
-                  src={slider.imageTablet}
+                  src={slider.image}
                   width={720}
                   height={720}
                   alt={"some name"}
@@ -91,7 +101,7 @@ const Slideshow = () => {
               <div className="sm:hidden">
                 <Image
                   layout="responsive"
-                  src={slider.imageMobile}
+                  src={slider.image}
                   width={800}
                   height={800}
                   alt={"some name"}

@@ -36,14 +36,14 @@ const Home = () => {
 
         <>
             <Header/>
-            <LoadingPage loaded={!loading && response?.length>0}>
+            <LoadingPage loaded={!loading && response}>
                 <main id="main-content">
-                    <Slideshow/>
-                    <CategoryContainer data={response?.slice(0, 4)}/>
+                    <Slideshow images={response?.banners?.topHomePageBanners}/>
+                    <CategoryContainer data={response?.mainCategories?.slice(0, 4)}/>
                     <ProductsContainer title={t("best_selling")}
                                        desc={t("best_selling_desc")}
-                                       products={response?.slice(9, 10)[0]?.products}/>
-                    <CategoryContainer data={response?.slice(4, 8)}/>
+                                       products={response?.specialCategory?.products}/>
+                    <CategoryContainer data={response?.mainCategories?.slice(4, 8)}/>
                     <div className="border-gray100 border-b-2"></div>
                     <AboutUsContainer title={t("about_us")}
                                       desc={t("about_us_desc")}/>

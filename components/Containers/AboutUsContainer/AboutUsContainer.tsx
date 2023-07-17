@@ -4,7 +4,7 @@ import ourShop from "../../../public/images/img1.png";
 
 const AboutUsContainer = ({title,desc}:{title:string,desc:string}) => {
     return (
-        <section className="app-max-width mt-16 mb-20 flex flex-col justify-center items-center text-center">
+        <section className="app-max-width mt-12 mb-4 flex flex-col justify-center items-center text-center">
             <div className="textBox w-3/4 md:w-2/4 lg:w-2/5 mb-6">
                 <h2 className="text-3xl mb-6">{title}</h2>
                 <span className="w-full">{desc}</span>
