@@ -11,6 +11,8 @@ import {getCookie} from "cookies-next";
 import useFetch from "../hooks/useFetch";
 import {ApiRoutes} from "../enums/ApiRoutes";
 import {useCart} from "../context/cart/CartProvider";
+import Loading from "../public/icons/Loading";
+import LoadingPage from "../components/Reusable/LoadingPage";
 
 const Index = () => {
   const router = useRouter()
@@ -21,12 +23,17 @@ const Index = () => {
   const [loading, setLoading] = useState(false)
   const {request, response} = useFetch()
   const {updateCart} = useCart()
+  const [checkedLogin,setCheckedLogin]=useState(false)
 
   useEffect(() => {
     const initialCookie = getCookie("user")
     const user = initialCookie && JSON.parse(initialCookie as string)
     const token = user?.token
-    if (token) router.push("/shop")
+    if (token) {
+      router.push("/shop")
+    }else{
+      setCheckedLogin(true)
+    }
   }, [])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -37,7 +44,7 @@ const Index = () => {
       setLoading(false)
       router.push("/shop")
       request({url: ApiRoutes.CLIENT_CART})
-          .then((res: any) => updateCart(res))
+          .then((res: any) => updateCart(res.cart))
     }
     if (!loginResponse.success) {
       setLoading(false)
@@ -46,6 +53,7 @@ const Index = () => {
   };
 
   return (
+      <LoadingPage loaded={checkedLogin}>
       <div className='p-4'>
         <div className='flex justify-center mt-6 mb-12'>
           <Logo/>
@@ -87,7 +95,7 @@ const Index = () => {
           />
         </form>
       </div>
-
+      </LoadingPage>
   );
 };
 

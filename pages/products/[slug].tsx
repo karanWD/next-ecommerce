@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {GetServerSideProps} from "next";
 import Header from "../../components/Header/Header";
 import useFetch from "../../hooks/useFetch";

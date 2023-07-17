@@ -81,14 +81,14 @@ const Header: React.FC<Props> = ({ title }) => {
       <nav
         className={`${
           scrolled ? "bg-white sticky top-0 shadow-md z-50" : "bg-transparent"
-        } w-full z-50 h-20 relative`}
+        } w-full z-50  relative`}
       >
         <div className="app-max-width w-full">
           <div
-            className={`flex flex-row-reverse justify-between align-baseline app-x-padding ${styles.mainMenu}`}
+            className={`flex flex-row-reverse justify-between items-center app-x-padding ${styles.mainMenu}`}
           >
             {/* Hamburger Menu and Mobile Nav */}
-            <div className="flex-1 lg:flex-0 lg:hidden">
+            <div className="flex-1  lg:flex-0 lg:hidden">
               <Menu />
             </div>
 

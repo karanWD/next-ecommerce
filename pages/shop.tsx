@@ -10,6 +10,8 @@ import CategoryContainer from "../components/Containers/CategoryContainer/Catego
 import AboutUsContainer from "../components/Containers/AboutUsContainer/AboutUsContainer";
 import ProductsContainer from "../components/Containers/ProductsContainer/ProductsContainer";
 import useFetch from "../hooks/useFetch";
+import {useCart} from "../context/cart/CartProvider";
+import LoadingPage from "../components/Reusable/LoadingPage";
 
 type CatItemsType = {
     images: string[],
@@ -19,40 +21,37 @@ type CatItemsType = {
     _id: string,
     isActive: boolean,
     products?: any[]
-    hasSubCategories:boolean
+    hasSubCategories: boolean
 };
-
 
 
 const Home = () => {
     const t = useTranslations("Index");
-    const {request,response,isLoaded,error}=useFetch()
+    const {request, response, isLoaded, error} = useFetch()
 
     useEffect(() => {
-            request({
-                url:ApiRoutes.CLIENT_CATEGORIES
-            })
+        request({
+            url: ApiRoutes.CLIENT_CATEGORIES
+        })
     }, []);
-
 
     return (
 
         <>
             <Header/>
-            {
-                isLoaded && response &&
+            <LoadingPage loaded={isLoaded && response.length>0}>
                 <main id="main-content">
                     <Slideshow/>
                     <CategoryContainer data={response?.slice(0, 4)}/>
                     <ProductsContainer title={t("best_selling")}
                                        desc={t("best_selling_desc")}
-                                       products={response.slice(9, 10)[0]?.products}/>
-                    <CategoryContainer data={response.slice(4, 8)}/>
+                                       products={response?.slice(9, 10)[0]?.products}/>
+                    <CategoryContainer data={response?.slice(4, 8)}/>
                     <div className="border-gray100 border-b-2"></div>
                     <AboutUsContainer title={t("about_us")}
                                       desc={t("about_us_desc")}/>
                 </main>
-            }
+            </LoadingPage>
         </>
     );
 };
