@@ -12,17 +12,17 @@ const OverlayContainer: FC<Props> = ({ imgSrc, imgSrc2, imgAlt, children }) => (
   <div className={`${styles.imgContainer}`}>
     {imgSrc2 ? (
       <>
-        <div className="hidden sm:block w-full">
+        <div className="hidden md:block w-full">
           <Image
             className={styles.img}
             src={imgSrc}
             alt={imgAlt}
             width={858}
-            height={414}
+            height={858}
             layout="responsive"
           />
         </div>
-        <div className="block sm:hidden w-full">
+        <div className="block md:hidden w-full">
           <Image
             className={styles.img}
             src={imgSrc2}

@@ -61,7 +61,7 @@ const MyApp = ({Component, pageProps}: AppCustomProps) => {
             </NextIntlProvider>
             :
             <div className='h-screen flex items-center justify-center'>
-                برای استفاده از امکانات اپلیکیشن تیارا، با استفاده از تلفن همراه خود وارد سایت شوید
+                برای استفاده از امکانات اپلیکیشن تیارا، با تلفن همراه خود به صورت پرتره وارد سایت شوید
             </div>
     );
 };

@@ -63,10 +63,8 @@ const Header: React.FC<Props> = ({ title }) => {
   }
   return (
     <>
-      {/* ===== <head> section ===== */}
       <AppHeader title={title} />
 
-      {/* ===== Skip to main content button ===== */}
       <a
         href="#main-content"
         className="whitespace-nowrap absolute z-50 left-4 opacity-90 rounded-md bg-white px-4 py-3 transform -translate-y-40 focus:translate-y-0 transition-all duration-300"
@@ -74,10 +72,8 @@ const Header: React.FC<Props> = ({ title }) => {
         {t("skip_to_main_content")}
       </a>
 
-      {/* ===== Top Navigation ===== */}
       <TopNav />
 
-      {/* ===== Main Navigation ===== */}
       <nav
         className={`${
           scrolled ? "bg-white sticky top-0 shadow-md z-50" : "bg-transparent"
@@ -155,34 +151,34 @@ const Header: React.FC<Props> = ({ title }) => {
 
             {/* Right Nav */}
             <ul className={`flex-1 flex justify-end ${styles.rightMenu}`}>
-              <li>
-                <SearchForm />
-              </li>
-              <li>
-                <AuthForm>
-                  <UserIcon />
-                </AuthForm>
-              </li>
-              <li>
-                <Link href="/wishlist" passHref>
-                  {/* <a className="relative" aria-label="Wishlist"> */}
-                  <button
-                    type="button"
-                    className="relative"
-                    aria-label="Wishlist"
-                  >
-                    <WhistlistIcon />
-                    {noOfWishlist > 0 && (
-                      <span
-                        className={`${animate} absolute text-xs -top-3 -right-3 bg-gray500 text-gray100 py-1 px-2 rounded-full`}
-                      >
-                        {noOfWishlist}
-                      </span>
-                    )}
-                  </button>
-                  {/* </a> */}
-                </Link>
-              </li>
+              {/*<li>*/}
+              {/*  <SearchForm />*/}
+              {/*</li>*/}
+              {/*<li>*/}
+              {/*  <AuthForm>*/}
+              {/*    <UserIcon />*/}
+              {/*  </AuthForm>*/}
+              {/*</li>*/}
+              {/*<li>*/}
+              {/*  <Link href="/wishlist" passHref>*/}
+              {/*    /!* <a className="relative" aria-label="Wishlist"> *!/*/}
+              {/*    <button*/}
+              {/*      type="button"*/}
+              {/*      className="relative"*/}
+              {/*      aria-label="Wishlist"*/}
+              {/*    >*/}
+              {/*      <WhistlistIcon />*/}
+              {/*      {noOfWishlist > 0 && (*/}
+              {/*        <span*/}
+              {/*          className={`${animate} absolute text-xs -top-3 -right-3 bg-gray500 text-gray100 py-1 px-2 rounded-full`}*/}
+              {/*        >*/}
+              {/*          {noOfWishlist}*/}
+              {/*        </span>*/}
+              {/*      )}*/}
+              {/*    </button>*/}
+              {/*    /!* </a> *!/*/}
+              {/*  </Link>*/}
+              {/*</li>*/}
               <li className='ml-0 mr-auto'>
                 <CartItem />
               </li>
