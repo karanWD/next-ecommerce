@@ -9,6 +9,7 @@ type CatItemsType = {
     _id:string,
     isActive:boolean,
     products?:any[]
+    hasSubCategories:boolean
 };
 
 type Props = {
@@ -22,7 +23,7 @@ const CategoryContainer:FC<Props> = ({data}) => {
                 {data?.map((item, index) => {
                     return (
                         <div className='col-span-2 lg:col-span-1' key={"CAT_ITEM_" + index}>
-                            <CategoryItem  title={item.title} img={item.thumbnail} name={item.slug} link={"/"+item.slug}/>
+                            <CategoryItem  title={item.title} img={item.thumbnail} name={item.slug} link={"/"+item.slug+(item.hasSubCategories?"":"/products" )}/>
                         </div>
                     )})}
             </div>

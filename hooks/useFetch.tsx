@@ -27,29 +27,31 @@ instance.interceptors.response.use(
 const UseFetch = () => {
     const [response, setResponse] = useState({
         response: null,
-        isLoaded: false,
+        loading: false,
         error: null,
     });
 
     const request = async (axiosParams:AxiosRequestConfig) => {
         try {
+            await setResponse({
+                loading: true,
+                response: null,
+                error: null
+            })
            const res = await instance.request(axiosParams)
            await setResponse({
-                isLoaded: true,
+                loading:false,
                 response: res.data,
                 error: null
             })
             return Promise.resolve(res.data)
         }catch (e:any){
             setResponse({
-                isLoaded: true,
+                loading: false,
                 response: null,
                 error: e
             });
-            toast.error("خطا در درخواست",{
-                theme:"colored",
-                position:toast.POSITION.BOTTOM_CENTER
-            })
+            toast.error("خطا در درخواست")
             return Promise.reject(e.message)
         }
     };

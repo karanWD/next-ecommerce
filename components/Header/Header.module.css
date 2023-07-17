@@ -13,7 +13,7 @@
 
 /* Main Menu */
 .mainMenu {
-  @apply py-6;
+  @apply py-4;
 }
 /* .leftMenu {
   @apply ml-8 my-6;

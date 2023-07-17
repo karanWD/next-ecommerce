@@ -1,8 +1,8 @@
-import { itemType } from "../cart/cart-types";
+import {cartType, itemType} from "../cart/cart-types";
 
 const addItemToCart = (
-  cartItems: itemType[],
-  item: itemType,
+  cartItems?:any[],
+  item?:any,
   add_one = false
 ) => {
   const duplicate = cartItems.some((cartItem) => cartItem.id === item.id);

@@ -24,7 +24,7 @@ const Header: React.FC<Props> = ({ title }) => {
   const { wishlist } = useWishlist();
   const [animate, setAnimate] = useState("");
   const [scrolled, setScrolled] = useState<boolean>(true);
-  const [didMount, setDidMount] = useState<boolean>(false); // to disable Can't perform a React state Warning
+  const [didMount, setDidMount] = useState<boolean>(false);
 
   // Calculate Number of Wishlist
   let noOfWishlist = wishlist.length;
@@ -81,40 +81,59 @@ const Header: React.FC<Props> = ({ title }) => {
       <nav
         className={`${
           scrolled ? "bg-white sticky top-0 shadow-md z-50" : "bg-transparent"
-        } w-full z-50 h-20 relative`}
+        } w-full z-50  relative`}
       >
         <div className="app-max-width w-full">
           <div
-            className={`flex flex-row-reverse justify-between align-baseline app-x-padding ${styles.mainMenu}`}
+            className={`flex flex-row-reverse justify-between items-center app-x-padding ${styles.mainMenu}`}
           >
             {/* Hamburger Menu and Mobile Nav */}
-            <div className="flex-1 lg:flex-0 lg:hidden">
+            <div className="flex-1  lg:flex-0 lg:hidden">
               <Menu />
             </div>
 
-            {/* Left Nav */}
-            <ul className={`flex-0 lg:flex-1 flex ${styles.leftMenu}`}>
-              <li>
-                <Link href={`/product-category/men`}>
-                  <a>{t("men")}</a>
-                </Link>
-              </li>
-              <li>
-                <Link href={`/product-category/women`}>
-                  <a>{t("women")}</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/product-category/bags">
-                  <a>{t("bags")}</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/coming-soon">
-                  <a>{t("blogs")}</a>
-                </Link>
-              </li>
-            </ul>
+            {/*<ul className={`flex-0 lg:flex-1 flex ${styles.leftMenu}`}>*/}
+            {/*  <li>*/}
+            {/*    <Link href={`/product-category/men`}>*/}
+            {/*      <a>{t("ring")}</a>*/}
+            {/*    </Link>*/}
+            {/*  </li>*/}
+            {/*  <li>*/}
+            {/*    <Link href={`/product-category/women`}>*/}
+            {/*      <a>{t("bracelet")}</a>*/}
+            {/*    </Link>*/}
+            {/*  </li>*/}
+            {/*  <li>*/}
+            {/*    <Link href="/product-category/bags">*/}
+            {/*      <a>{t("overDress")}</a>*/}
+            {/*    </Link>*/}
+            {/*  </li>*/}
+            {/*  <li>*/}
+            {/*    <Link href="/coming-soon">*/}
+            {/*      <a>{t("service")}</a>*/}
+            {/*    </Link>*/}
+            {/*  </li>*/}
+            {/*  <li>*/}
+            {/*    <Link href="/coming-soon">*/}
+            {/*      <a>{t("binding")}</a>*/}
+            {/*    </Link>*/}
+            {/*  </li>*/}
+            {/*  <li>*/}
+            {/*    <Link href="/coming-soon">*/}
+            {/*      <a>{t("halfSet")}</a>*/}
+            {/*    </Link>*/}
+            {/*  </li>*/}
+            {/*  <li>*/}
+            {/*    <Link href="/coming-soon">*/}
+            {/*      <a>{t("earrings")}</a>*/}
+            {/*    </Link>*/}
+            {/*  </li>*/}
+            {/*  <li>*/}
+            {/*    <Link href="/coming-soon">*/}
+            {/*      <a>{t("chain")}</a>*/}
+            {/*    </Link>*/}
+            {/*  </li>*/}
+            {/*</ul>*/}
 
             {/* Tiara Logo */}
             <div className="flex-1 flex justify-center items-center cursor-pointer">
