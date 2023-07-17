@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import useFetch from "../../hooks/useFetch";
 import Header from "../../components/Header/Header";
-import {GetStaticProps} from "next";
+import {GetServerSideProps} from "next";
 import {roundDecimal} from "../../components/Util/utilFunc";
 import {useTranslations} from "next-intl";
 
@@ -77,7 +77,7 @@ const OrderDetail = () => {
 
 export default OrderDetail;
 
-export const getStaticProps: GetStaticProps = async ({locale}) => {
+export const getServerSideProps: GetServerSideProps = async ({locale}) => {
     return {
         props: {
             messages: {

@@ -1,6 +1,5 @@
 import React from 'react';
 import Image from "next/image";
-import ourShop from "../../../public/images/img1.png";
 
 const AboutUsContainer = ({title,desc}:{title:string,desc:string}) => {
     return (
@@ -10,7 +9,7 @@ const AboutUsContainer = ({title,desc}:{title:string,desc:string}) => {
                 <span className="w-full">{desc}</span>
             </div>
             <div className="w-full app-x-padding flex justify-center">
-                <Image src={ourShop} alt="Our Shop"/>
+                <Image src="/images/img1.png" alt="Our Shop"/>
             </div>
         </section>
     );

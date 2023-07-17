@@ -1,5 +1,4 @@
-import React, {useContext, useEffect, useReducer, useState} from "react";
-import cartReducer from "./cartReducer";
+import React, {useContext, useEffect, useState} from "react";
 import CartContext from "./CartContext";
 import {getCookie, setCookies} from "cookies-next";
 
