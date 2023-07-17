@@ -1,16 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {GetStaticProps} from "next";
-import axios from "axios";
 import {useTranslations} from "next-intl";
 import Header from "../components/Header/Header";
 import Slideshow from "../components/HeroSection/Slideshow";
 import {ApiRoutes} from "../enums/ApiRoutes";
-import {getCookie} from "cookies-next";
 import CategoryContainer from "../components/Containers/CategoryContainer/CategoryContainer";
 import AboutUsContainer from "../components/Containers/AboutUsContainer/AboutUsContainer";
 import ProductsContainer from "../components/Containers/ProductsContainer/ProductsContainer";
 import useFetch from "../hooks/useFetch";
-import {useCart} from "../context/cart/CartProvider";
 import LoadingPage from "../components/Reusable/LoadingPage";
 
 type CatItemsType = {
@@ -27,7 +24,7 @@ type CatItemsType = {
 
 const Home = () => {
     const t = useTranslations("Index");
-    const {request, response, isLoaded, error} = useFetch()
+    const {request, response, loading, error} = useFetch()
 
     useEffect(() => {
         request({
@@ -39,7 +36,7 @@ const Home = () => {
 
         <>
             <Header/>
-            <LoadingPage loaded={isLoaded && response?.length>0}>
+            <LoadingPage loaded={!loading && response?.length>0}>
                 <main id="main-content">
                     <Slideshow/>
                     <CategoryContainer data={response?.slice(0, 4)}/>

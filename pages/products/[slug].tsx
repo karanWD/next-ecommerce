@@ -12,6 +12,7 @@ import CounterContainer from "../../components/Product/CounterContainer";
 import StickyPament from "../../components/Product/StickyPament";
 import {toast} from 'react-toastify';
 import {useCart} from "../../context/cart/CartProvider";
+import LoadingPage from "../../components/Reusable/LoadingPage";
 
 const ProductPage = () => {
   const router = useRouter()
@@ -20,9 +21,10 @@ const ProductPage = () => {
   const [color, setColor] = useState({id: "", value: ""})
   const [size, setSize] = useState({id: "", value: ""})
   const [count, setCount] = useState(1)
-  const {response, isLoaded, error, request} = useFetch()
-  const {response: addResponse, request: addRequest} = useFetch()
+  const {response, loading, error, request} = useFetch()
+  const {response: addResponse, request: addRequest,loading:addReqLoading} = useFetch()
   const {updateCart,cart} = useCart()
+
   const addToCartHandler = async () => {
     await addRequest({
       method: "POST",
@@ -51,27 +53,25 @@ const ProductPage = () => {
   return (
       <>
         <Header/>
-        {/*<Breadcrumb category={} name={} />*/}
-        {
-            isLoaded && response &&
-            <div className='flex flex-col gap-4 text-right'>
-                <InfoContaincer name={response.title}
-                                images={[response.thumbnail, "/images/img1.png", "/images/img1.png", "/images/img1.png", "/images/img1.png"]}/>
-                <FeatureContainer title={t("size")} features={response.sizes}
-                                  selectHandler={(data) => setSize(data)}
-                                  selected={size.id}/>
-                <FeatureContainer title={t("color")} features={response.colors}
-                                  selectHandler={(data) => setColor(data)}
-                                  selected={color.id}/>
+        <LoadingPage loaded={!loading && response}>
+          <div className='flex flex-col gap-4 text-right'>
+            <InfoContaincer name={response?.title}
+                            images={[response?.thumbnail, "/images/img1.png", "/images/img1.png", "/images/img1.png", "/images/img1.png"]}/>
+            <FeatureContainer title={t("size")} features={response?.sizes}
+                              selectHandler={(data) => setSize(data)}
+                              selected={size.id}/>
+            <FeatureContainer title={t("color")} features={response?.colors}
+                              selectHandler={(data) => setColor(data)}
+                              selected={color.id}/>
 
-                <CounterContainer clickHandler={(value => setCount(prev => prev + value))} currentValue={count}
-                                  title={t("count")}/>
-                <br/>
-                <br/>
-                <StickyPament clickHandler={addToCartHandler} total={+size.value * count}
-                              isActive={!!size.id && !!count && !!color.id}/>
-            </div>
-        }
+            <CounterContainer clickHandler={(value => setCount(prev => prev + value))} currentValue={count}
+                              title={t("count")}/>
+            <br/>
+            <br/>
+            <StickyPament clickHandler={addToCartHandler} total={+size.value * count}
+                          isActive={!!size.id && !!count && !!color.id && !addReqLoading}/>
+          </div>
+        </LoadingPage>
       </>
   );
 };

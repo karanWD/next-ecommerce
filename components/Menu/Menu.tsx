@@ -1,5 +1,4 @@
 import { Fragment, useState } from "react";
-import { Menu as HMenu } from "@headlessui/react";
 import Link from "next/link";
 import Image from "next/image";
 import { Dialog, Transition } from "@headlessui/react";
@@ -7,15 +6,9 @@ import { useTranslations } from "next-intl";
 import { useRouter } from "next/router";
 
 import MenuIcon from "../../public/icons/MenuIcon";
-import AuthForm from "../Auth/AuthForm";
-import WhistlistIcon from "../../public/icons/WhistlistIcon";
-import UserIcon from "../../public/icons/UserIcon";
-import SearchIcon from "../../public/icons/SearchIcon";
-import DownArrow from "../../public/icons/DownArrow";
-import InstagramLogo from "../../public/icons/InstagramLogo";
-import FacebookLogo from "../../public/icons/FacebookLogo";
 import { useWishlist } from "../../context/wishlist/WishlistProvider";
 import { useAuth } from "../../context/AuthContext";
+import BagIcon from "../../public/icons/BagIcon";
 
 export default function Menu() {
   const t = useTranslations("Navigation");
@@ -108,181 +101,93 @@ export default function Menu() {
 
                 <div className="mb-10 ">
                   <div className="itemContainer px-6 w-full flex flex-col justify-around items-center ">
-                    {/*<form*/}
-                    {/*  className="flex w-full justify-between items-center mt-5 mb-5 border-gray300 border-b-2"*/}
-                    {/*  onSubmit={handleSubmit}*/}
-                    {/*>*/}
-                    {/*  <SearchIcon extraClass="text-gray300 w-6 h-6" />*/}
-                    {/*  <input*/}
-                    {/*    type="search"*/}
-                    {/*    placeholder={t("search_anything")}*/}
-                    {/*    className="px-4 py-2 w-full focus:outline-none text-xl"*/}
-                    {/*    onChange={handleChange}*/}
-                    {/*  />*/}
-                    {/*</form>*/}
-                    <Link href="/product-category/men">
+                    <Link href="ring">
                       <a
                         className="w-full text-xl hover:bg-gray100 text-right py-2"
                         onClick={closeModal}
                       >
-                        {t("men")}
+                        {t("ring")}
                       </a>
                     </Link>
-                    <Link href="/product-category/women">
+                    <Link href="bracelet">
                       <a
-                        className="w-full text-xl hover:bg-gray100 text-right py-2"
-                        onClick={closeModal}
+                          className="w-full text-xl hover:bg-gray100 text-right py-2"
+                          onClick={closeModal}
                       >
-                        {t("women")}
+                        {t("bracelet")}
                       </a>
                     </Link>
-                    <Link href="/about">
+                    <Link href="earrings">
                       <a
-                        className="w-full text-xl hover:bg-gray100 text-right py-2"
-                        onClick={closeModal}
+                          className="w-full text-xl hover:bg-gray100 text-right py-2"
+                          onClick={closeModal}
                       >
-                        {t("about_us")}
+                        {t("earrings")}
                       </a>
                     </Link>
-                    <Link href="/contact">
+                    <Link href="clothing">
                       <a
-                        className="w-full text-xl hover:bg-gray100 text-right py-2"
-                        onClick={closeModal}
+                          className="w-full text-xl hover:bg-gray100 text-right py-2"
+                          onClick={closeModal}
                       >
-                        {t("contact_us")}
+                        {t("clothing")}
+                      </a>
+                    </Link>
+                    <Link href="gold-se">
+                      <a
+                          className="w-full text-xl hover:bg-gray100 text-right py-2"
+                          onClick={closeModal}
+                      >
+                        {t("service")}
+                      </a>
+                    </Link>
+                    <Link href="half-gold-set">
+                      <a
+                          className="w-full text-xl hover:bg-gray100 text-right py-2"
+                          onClick={closeModal}
+                      >
+                        {t("half-gold-set")}
+                      </a>
+                    </Link>
+                    <Link href="ankle-bracelet">
+                      <a
+                          className="w-full text-xl hover:bg-gray100 text-right py-2"
+                          onClick={closeModal}
+                      >
+                        {t("ankle-bracelet")}
+                      </a>
+                    </Link>
+                    <Link href="chain">
+                      <a
+                          className="w-full text-xl hover:bg-gray100 text-right py-2"
+                          onClick={closeModal}
+                      >
+                        {t("chain")}
+                      </a>
+                    </Link>
+                    <Link href="bangle">
+                      <a
+                          className="w-full text-xl hover:bg-gray100 text-right py-2"
+                          onClick={closeModal}
+                      >
+                        {t("bangle")}
                       </a>
                     </Link>
                     <hr className="border border-gray300 w-full mt-2" />
-                    <div className="w-full text-xl py-2 my-3 flex justify-between">
-                      <AuthForm extraClass="flex justify-between w-full">
-                        <span>{auth.user ? t("profile") : t("login")}</span>
-                        <UserIcon />
-                      </AuthForm>
-                    </div>
-                    <hr className="border border-gray300 w-full" />
-                    <Link href="/wishlist">
+                    <Link href="/orders">
                       <a className="text-xl py-2 my-3 w-full flex justify-between">
-                        <span>{t("wishlist")}</span>
-                        <div className="relative">
-                          <WhistlistIcon />
-                          {noOfWishlist > 0 && (
-                            <span
-                              className={`absolute text-xs -top-0 -left-7 bg-gray500 text-gray100 py-1 px-2 rounded-full`}
-                            >
-                              {noOfWishlist}
-                            </span>
-                          )}
-                        </div>
+                        {t("orders")}
+                      </a>
+                    </Link>
+                    <hr className="border border-gray300 w-full" />
+                    <Link href="/shopping-cart">
+                      <a className="text-xl py-2 my-3 w-full flex justify-between">
+                        <span>{t("shopping-cart")}</span>
+                        <div className="relative"><BagIcon/></div>
                       </a>
                     </Link>
                     <hr className="border border-gray300 w-full" />
 
-                    {/* Locale Dropdown */}
-                    {/*<HMenu*/}
-                    {/*  as="div"*/}
-                    {/*  className="relative bg-gray100 mt-4 mb-2 w-full"*/}
-                    {/*>*/}
-                    {/*  <HMenu.Button*/}
-                    {/*    as="a"*/}
-                    {/*    href="#"*/}
-                    {/*    className="flex justify-center items-center py-2 px-4 text-center"*/}
-                    {/*  >*/}
-                    {/*    {locale === "en" ? t("english") : t("myanmar")}{" "}*/}
-                    {/*    <DownArrow />*/}
-                    {/*  </HMenu.Button>*/}
-                    {/*  <HMenu.Items*/}
-                    {/*    className="flex flex-col w-full right-0 absolute p-1 border border-gray200 bg-white mt-2 outline-none"*/}
-                    {/*    style={{ zIndex: 9999 }}*/}
-                    {/*  >*/}
-                    {/*    <HMenu.Item>*/}
-                    {/*      <Link href={asPath} locale="en">*/}
-                    {/*        <a*/}
-                    {/*          className={`${*/}
-                    {/*            locale === "en"*/}
-                    {/*              ? "bg-gray200 text-gray500"*/}
-                    {/*              : "bg-white text-gray500"*/}
-                    {/*          } py-2 px-4 text-center focus:outline-none`}*/}
-                    {/*        >*/}
-                    {/*          {t("english")}*/}
-                    {/*        </a>*/}
-                    {/*      </Link>*/}
-                    {/*    </HMenu.Item>*/}
-                    {/*    <HMenu.Item>*/}
-                    {/*      <Link href={asPath} locale="my">*/}
-                    {/*        <a*/}
-                    {/*          className={`${*/}
-                    {/*            locale === "my"*/}
-                    {/*              ? "bg-gray200 text-gray500"*/}
-                    {/*              : "bg-white text-gray500"*/}
-                    {/*          } py-2 px-4 text-center focus:outline-none`}*/}
-                    {/*        >*/}
-                    {/*          {t("myanmar")}*/}
-                    {/*        </a>*/}
-                    {/*      </Link>*/}
-                    {/*    </HMenu.Item>*/}
-                    {/*  </HMenu.Items>*/}
-                    {/*</HMenu>*/}
-
-                    {/*/!* Currency Dropdown *!/*/}
-                    {/*<HMenu as="div" className="relative bg-gray100 my-2 w-full">*/}
-                    {/*  <HMenu.Button*/}
-                    {/*    as="a"*/}
-                    {/*    href="#"*/}
-                    {/*    className="flex justify-center items-center py-2 px-4 text-center"*/}
-                    {/*  >*/}
-                    {/*    {t("usd")} <DownArrow />*/}
-                    {/*  </HMenu.Button>*/}
-                    {/*  <HMenu.Items*/}
-                    {/*    className="flex flex-col w-full right-0 absolute p-1 border border-gray200 bg-white mt-2 outline-none"*/}
-                    {/*    style={{ zIndex: 9999 }}*/}
-                    {/*  >*/}
-                    {/*    <HMenu.Item>*/}
-                    {/*      {({ active }) => (*/}
-                    {/*        <a*/}
-                    {/*          href="#"*/}
-                    {/*          className={`${*/}
-                    {/*            active*/}
-                    {/*              ? "bg-gray100 text-gray500"*/}
-                    {/*              : "bg-white text-gray500"*/}
-                    {/*          } py-2 px-4 text-center focus:outline-none`}*/}
-                    {/*        >*/}
-                    {/*          {t("usd")}*/}
-                    {/*        </a>*/}
-                    {/*      )}*/}
-                    {/*    </HMenu.Item>*/}
-                    {/*    <HMenu.Item>*/}
-                    {/*      {({ active }) => (*/}
-                    {/*        <a*/}
-                    {/*          href="#"*/}
-                    {/*          className={`${*/}
-                    {/*            active*/}
-                    {/*              ? "bg-gray100 text-gray500"*/}
-                    {/*              : "bg-white text-gray500"*/}
-                    {/*          } py-2 px-4 text-center focus:outline-none`}*/}
-                    {/*        >*/}
-                    {/*          {t("mmk")}*/}
-                    {/*        </a>*/}
-                    {/*      )}*/}
-                    {/*    </HMenu.Item>*/}
-                    {/*  </HMenu.Items>*/}
-                    {/*</HMenu>*/}
-
-                    {/*<div className="flex my-10 w-2/5 space-x-6 justify-center">*/}
-                    {/*  <a*/}
-                    {/*    href="#"*/}
-                    {/*    className="text-gray400 w-10 h-10 py-1 px-auto flex justify-center rounded-md active:bg-gray300"*/}
-                    {/*    aria-label="Haru Fashion Facebook Page"*/}
-                    {/*  >*/}
-                    {/*    <FacebookLogo extraClass="h-8" />*/}
-                    {/*  </a>*/}
-                    {/*  <a*/}
-                    {/*    href="#"*/}
-                    {/*    className="text-gray400 w-10 h-10 py-1 px-auto flex justify-center rounded-md active:bg-gray300"*/}
-                    {/*    aria-label="Haru Fashion Facebook Page"*/}
-                    {/*  >*/}
-                    {/*    <InstagramLogo extraClass="h-8" />*/}
-                    {/*  </a>*/}
-                    {/*</div>*/}
                   </div>
                 </div>
               </div>
@@ -293,3 +198,125 @@ export default function Menu() {
     </>
   );
 }
+
+
+
+{/*<form*/}
+{/*  className="flex w-full justify-between items-center mt-5 mb-5 border-gray300 border-b-2"*/}
+{/*  onSubmit={handleSubmit}*/}
+{/*>*/}
+{/*  <SearchIcon extraClass="text-gray300 w-6 h-6" />*/}
+{/*  <input*/}
+{/*    type="search"*/}
+{/*    placeholder={t("search_anything")}*/}
+{/*    className="px-4 py-2 w-full focus:outline-none text-xl"*/}
+{/*    onChange={handleChange}*/}
+{/*  />*/}
+{/*</form>*/}
+
+{/* Locale Dropdown */}
+{/*<HMenu*/}
+{/*  as="div"*/}
+{/*  className="relative bg-gray100 mt-4 mb-2 w-full"*/}
+{/*>*/}
+{/*  <HMenu.Button*/}
+{/*    as="a"*/}
+{/*    href="#"*/}
+{/*    className="flex justify-center items-center py-2 px-4 text-center"*/}
+{/*  >*/}
+{/*    {locale === "en" ? t("english") : t("myanmar")}{" "}*/}
+{/*    <DownArrow />*/}
+{/*  </HMenu.Button>*/}
+{/*  <HMenu.Items*/}
+{/*    className="flex flex-col w-full right-0 absolute p-1 border border-gray200 bg-white mt-2 outline-none"*/}
+{/*    style={{ zIndex: 9999 }}*/}
+{/*  >*/}
+{/*    <HMenu.Item>*/}
+{/*      <Link href={asPath} locale="en">*/}
+{/*        <a*/}
+{/*          className={`${*/}
+{/*            locale === "en"*/}
+{/*              ? "bg-gray200 text-gray500"*/}
+{/*              : "bg-white text-gray500"*/}
+{/*          } py-2 px-4 text-center focus:outline-none`}*/}
+{/*        >*/}
+{/*          {t("english")}*/}
+{/*        </a>*/}
+{/*      </Link>*/}
+{/*    </HMenu.Item>*/}
+{/*    <HMenu.Item>*/}
+{/*      <Link href={asPath} locale="my">*/}
+{/*        <a*/}
+{/*          className={`${*/}
+{/*            locale === "my"*/}
+{/*              ? "bg-gray200 text-gray500"*/}
+{/*              : "bg-white text-gray500"*/}
+{/*          } py-2 px-4 text-center focus:outline-none`}*/}
+{/*        >*/}
+{/*          {t("myanmar")}*/}
+{/*        </a>*/}
+{/*      </Link>*/}
+{/*    </HMenu.Item>*/}
+{/*  </HMenu.Items>*/}
+{/*</HMenu>*/}
+
+{/*/!* Currency Dropdown *!/*/}
+{/*<HMenu as="div" className="relative bg-gray100 my-2 w-full">*/}
+{/*  <HMenu.Button*/}
+{/*    as="a"*/}
+{/*    href="#"*/}
+{/*    className="flex justify-center items-center py-2 px-4 text-center"*/}
+{/*  >*/}
+{/*    {t("usd")} <DownArrow />*/}
+{/*  </HMenu.Button>*/}
+{/*  <HMenu.Items*/}
+{/*    className="flex flex-col w-full right-0 absolute p-1 border border-gray200 bg-white mt-2 outline-none"*/}
+{/*    style={{ zIndex: 9999 }}*/}
+{/*  >*/}
+{/*    <HMenu.Item>*/}
+{/*      {({ active }) => (*/}
+{/*        <a*/}
+{/*          href="#"*/}
+{/*          className={`${*/}
+{/*            active*/}
+{/*              ? "bg-gray100 text-gray500"*/}
+{/*              : "bg-white text-gray500"*/}
+{/*          } py-2 px-4 text-center focus:outline-none`}*/}
+{/*        >*/}
+{/*          {t("usd")}*/}
+{/*        </a>*/}
+{/*      )}*/}
+{/*    </HMenu.Item>*/}
+{/*    <HMenu.Item>*/}
+{/*      {({ active }) => (*/}
+{/*        <a*/}
+{/*          href="#"*/}
+{/*          className={`${*/}
+{/*            active*/}
+{/*              ? "bg-gray100 text-gray500"*/}
+{/*              : "bg-white text-gray500"*/}
+{/*          } py-2 px-4 text-center focus:outline-none`}*/}
+{/*        >*/}
+{/*          {t("mmk")}*/}
+{/*        </a>*/}
+{/*      )}*/}
+{/*    </HMenu.Item>*/}
+{/*  </HMenu.Items>*/}
+{/*</HMenu>*/}
+
+{/*<div className="flex my-10 w-2/5 space-x-6 justify-center">*/}
+{/*  <a*/}
+{/*    href="#"*/}
+{/*    className="text-gray400 w-10 h-10 py-1 px-auto flex justify-center rounded-md active:bg-gray300"*/}
+{/*    aria-label="Haru Fashion Facebook Page"*/}
+{/*  >*/}
+{/*    <FacebookLogo extraClass="h-8" />*/}
+{/*  </a>*/}
+{/*  <a*/}
+{/*    href="#"*/}
+{/*    className="text-gray400 w-10 h-10 py-1 px-auto flex justify-center rounded-md active:bg-gray300"*/}
+{/*    aria-label="Haru Fashion Facebook Page"*/}
+{/*  >*/}
+{/*    <InstagramLogo extraClass="h-8" />*/}
+{/*  </a>*/}
+{/*</div>*/}

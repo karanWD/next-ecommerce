@@ -8,28 +8,28 @@ import {ApiRoutes} from "../../enums/ApiRoutes";
 import {AxiosRequestConfig} from "axios";
 
 type categoryType = {
-    products:any[],
-    _id:string,
-    title:string,
-    slug:string
-    thumbnail:string
+    products: any[],
+    _id: string,
+    title: string,
+    slug: string
+    thumbnail: string
 }
 type fetchType = {
-    request:(axiosParams: AxiosRequestConfig<any>) => void,
-    response:categoryType,
-    error:any | null
-    isLoaded:boolean
+    request: (axiosParams: AxiosRequestConfig<any>) => void,
+    response: categoryType,
+    error: any | null
+    loading: boolean
 }
 
 const SubCategoryPage = () => {
     const router = useRouter()
     const {category} = router.query
-    const {response, error, isLoaded, request}:fetchType = useFetch()
+    const {response, error, loading, request}: fetchType = useFetch()
 
     useEffect(() => {
         category &&
         request({
-            url:ApiRoutes.CLIENT_CATEGORIES+"/"+category+"/products"
+            url: ApiRoutes.CLIENT_CATEGORIES + "/" + category + "/products"
         })
     }, [category])
 
@@ -37,13 +37,22 @@ const SubCategoryPage = () => {
         <>
             <Header/>
             <div className='grid grid-cols-4 gap-2 p-2'>
-                {response && isLoaded && response.products.map((item, index) => {
-                    return (
-                        <div key={'CAT_PAGE_ITEM_' + index} className=' col-span-2 md:col-span-2'>
-                            <ProductItem image={item.thumbnail} name={item.title} link={"/products/"+item.slug} weight={"8-18"} wage={"40"}/>
+                {response && !loading && (
+                    response.products.length > 0 ?
+                        response.products.map((item, index) => {
+                            const weightText =item.minWeight===item.maxWeight ? item.minWeight  :item.minWeight+"-"+item.maxWeight
+                            return (
+                                <div key={'CAT_PAGE_ITEM_' + index} className=' col-span-2 md:col-span-2'>
+                                    <ProductItem image={item.thumbnail} name={item.title}
+                                                 link={"/products/" + item.slug} weight={weightText} wage={item.wage}/>
+                                </div>
+                            )
+                        }) :
+                        <div className="col-span-4 text-center flex items-center justify-center" style={{height:"85vh"}}>
+                             محصولی در این دسته بندی موجود نیست
                         </div>
-                    )
-                })}
+                )
+                }
             </div>
         </>
     );

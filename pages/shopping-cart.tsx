@@ -19,7 +19,7 @@ import LoadingPage from "../components/Reusable/LoadingPage";
 const ShoppingCart = () => {
     const t = useTranslations("CartWishlist");
     const {cart, updateCart} = useCart();
-    const {request, response, isLoaded, error} = useFetch()
+    const {request, response, loading, error} = useFetch()
     const {request: incrementReq} = useFetch()
     const {request: decrementReq} = useFetch()
     const {request: deleteReq} = useFetch()
@@ -68,7 +68,7 @@ const ShoppingCart = () => {
     return (
         <div className=' flex flex-col'>
             <Header title={`سبدخرید - فرووشگاه تیــارا`}/>
-            <LoadingPage loaded={isLoaded && response}>
+            <LoadingPage loaded={!loading && response}>
                 <main id="main-content">
                     <div className="app-max-width px-4 sm:px-8 md:px-20 mb-14 flex flex-col lg:flex-row">
                         <div className="w-full lg:w-4/6 mr-4">
