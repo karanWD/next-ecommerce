@@ -22,7 +22,7 @@ const CategoryContainer:FC<Props> = ({data}) => {
                 className="app-max-width app-x-padding h-full grid grid-cols-4 gap-2  ">
                 {data?.map((item, index) => {
                     return (
-                        <div className='col-span-2 lg:col-span-1' key={"CAT_ITEM_" + index}>
+                        <div className='col-span-2 md:col-span-1' key={"CAT_ITEM_" + index}>
                             <CategoryItem  title={item.title} img={item.thumbnail} name={item.slug} link={"/"+item.slug+(item.hasSubCategories?"":"/products" )}/>
                         </div>
                     )})}

@@ -4,7 +4,6 @@ import NProgress from "nprogress";
 import {NextIntlProvider} from "next-intl";
 
 import {ProvideCart} from "../context/cart/CartProvider";
-import {ProvideWishlist} from "../context/wishlist/WishlistProvider";
 import {ProvideAuth} from "../context/AuthContext";
 
 import "../styles/globals.css";
@@ -51,17 +50,15 @@ const MyApp = ({Component, pageProps}: AppCustomProps) => {
         !isBlock ?
             <NextIntlProvider messages={pageProps?.messages}>
                 <ProvideAuth>
-                    <ProvideWishlist>
-                        <ProvideCart>
-                            <Component {...pageProps} />
-                            <ToastContainer rtl position={toast.POSITION.TOP_CENTER} theme="colored" limit={1}/>
-                        </ProvideCart>
-                    </ProvideWishlist>
+                    <ProvideCart>
+                        <Component {...pageProps} />
+                        <ToastContainer rtl position={toast.POSITION.TOP_CENTER} theme="colored" limit={1}/>
+                    </ProvideCart>
                 </ProvideAuth>
             </NextIntlProvider>
             :
             <div className='h-screen flex items-center justify-center'>
-                برای استفاده از امکانات اپلیکیشن تیارا، با استفاده از تلفن همراه خود وارد سایت شوید
+                برای استفاده از امکانات اپلیکیشن تیارا، با تلفن همراه خود به صورت پرتره وارد سایت شوید
             </div>
     );
 };

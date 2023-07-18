@@ -3,7 +3,7 @@ import React, {FC} from 'react';
 type Props = {
   title: string
   features: any[]
-  selectHandler: ({id,value}:{id:string,value:string}) => void
+  selectHandler: ({id,value}:{id:string,value:string,images:any[]}) => void
   selected: string
 }
 
@@ -17,7 +17,7 @@ const FeatureContainer: FC<Props> = ({title, features, selectHandler, selected})
               return (
                   <div
                       key={"FEATURE_INDEX_"+index}
-                      onClick={()=>selectHandler({id:item._id,value:item.weight??item.name})}
+                      onClick={()=>selectHandler({id:item._id,value:item.weight??item.name,images:item.images})}
                       className={`flex items-center justify-center border py-1.5 px-3 ${
                           selected === item._id
                               ? "bg-gray500 text-gray100"

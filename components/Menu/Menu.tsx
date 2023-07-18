@@ -6,7 +6,6 @@ import { useTranslations } from "next-intl";
 import { useRouter } from "next/router";
 
 import MenuIcon from "../../public/icons/MenuIcon";
-import { useWishlist } from "../../context/wishlist/WishlistProvider";
 import { useAuth } from "../../context/AuthContext";
 import BagIcon from "../../public/icons/BagIcon";
 
@@ -14,13 +13,9 @@ export default function Menu() {
   const t = useTranslations("Navigation");
   const router = useRouter();
   const { asPath, locale } = router;
-  const { wishlist } = useWishlist();
   const auth = useAuth();
   const [open, setOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-
-  // Calculate Number of Wishlist
-  let noOfWishlist = wishlist.length;
 
   function closeModal() {
     setOpen(false);

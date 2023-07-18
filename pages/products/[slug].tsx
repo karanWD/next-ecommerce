@@ -5,7 +5,6 @@ import useFetch from "../../hooks/useFetch";
 import {useRouter} from "next/router";
 import {ApiRoutes} from "../../enums/ApiRoutes";
 import InfoContaincer from "../../components/Product/InfoContaincer";
-import Breadcrumb from "../../components/Product/Breadcrumb";
 import FeatureContainer from "../../components/Product/FeatureContainer";
 import {useTranslations} from "next-intl";
 import CounterContainer from "../../components/Product/CounterContainer";
@@ -18,8 +17,8 @@ const ProductPage = () => {
   const router = useRouter()
   const {slug} = router.query
   const t = useTranslations("Product");
-  const [color, setColor] = useState({id: "", value: ""})
-  const [size, setSize] = useState({id: "", value: ""})
+  const [color, setColor] = useState<{id:string,value:string,images:any[]}>({id: "", value: "",images:[]})
+  const [size, setSize] = useState<{id:string,value:string,images:any[]}>({id: "", value: "",images:[]})
   const [count, setCount] = useState(1)
   const {response, loading, error, request} = useFetch()
   const {response: addResponse, request: addRequest,loading:addReqLoading} = useFetch()
@@ -43,11 +42,7 @@ const ProductPage = () => {
   }
 
   useEffect(() => {
-
-    slug &&
-    request({
-      url: ApiRoutes.CLIENT_PRODUCTS + "/" + slug
-    })
+    slug && request({url: ApiRoutes.CLIENT_PRODUCTS + "/" + slug})
   }, [slug])
 
   return (
@@ -56,7 +51,7 @@ const ProductPage = () => {
         <LoadingPage loaded={!loading && response}>
           <div className='flex flex-col gap-4 text-right'>
             <InfoContaincer name={response?.title}
-                            images={[response?.thumbnail, "/images/img1.png", "/images/img1.png", "/images/img1.png", "/images/img1.png"]}/>
+                            images={ size.images?.length>0 ? size.images :[response?.thumbnail]}/>
             <FeatureContainer title={t("size")} features={response?.sizes}
                               selectHandler={(data) => setSize(data)}
                               selected={size.id}/>
