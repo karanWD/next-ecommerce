@@ -1,12 +1,7 @@
 import React, {FC} from 'react';
 import LeftArrow from "../../public/icons/LeftArrow";
+import {OrderItemType} from "../../types";
 
-type OrderItem = {
-  createdAt: string
-  numberOfProducts: number
-  status: "NEW" | "PENDING" | "ACCEPTED" | "CANCELED" | "DELIVERED"
-  totalWeightWithWage: string
-}
 
 const STATUSES = {
   "NEW": {
@@ -31,7 +26,7 @@ const STATUSES = {
   }
 }
 
-const OrderItem: FC<OrderItem> = ({createdAt, status, totalWeightWithWage, numberOfProducts}) => {
+const OrderItem: FC<OrderItemType> = ({createdAt, status, totalWeightWithWage, numberOfProducts}) => {
   const STYLE = STATUSES[status].style + " " + "text-sm py-0.25 px-3"
   return (
       <div className="flex flex-row-reverse items-center justify-between p-4 border-b border-gray-200 ">

@@ -24,28 +24,28 @@ instance.interceptors.response.use(
     }
 );
 
-const UseFetch = () => {
-    const [response, setResponse] = useState({
-        response: null,
+const UseFetch = ():ResponseTypes => {
+    const [response, setResponse] = useState<Omit<ResponseTypes, "request">>({
+        response: null ,
         loading: false,
         error: null,
     });
 
-    const request = async (axiosParams:AxiosRequestConfig) => {
+    const request = async (axiosParams: AxiosRequestConfig) => {
         try {
             await setResponse({
                 loading: true,
                 response: null,
                 error: null
             })
-           const res = await instance.request(axiosParams)
-           await setResponse({
-                loading:false,
+            const res = await instance.request(axiosParams)
+            await setResponse({
+                loading: false,
                 response: res.data,
                 error: null
             })
             return Promise.resolve(res.data)
-        }catch (e:any){
+        } catch (e: any) {
             setResponse({
                 loading: false,
                 response: null,
@@ -56,7 +56,7 @@ const UseFetch = () => {
         }
     };
 
-    return {...response,request} as any
+    return {...response, request}
 };
 
 export default UseFetch;

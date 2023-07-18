@@ -1,18 +1,13 @@
-import {useEffect, useState} from "react";
-import Link from "next/link";
-import Image from "next/image";
+import {useEffect} from "react";
 import {useTranslations} from "next-intl";
-
-import Header from "../components/Header/Header";
-import GhostButton from "../components/Buttons/GhostButton";
 import {GetStaticProps} from "next";
-import {roundDecimal} from "../components/Util/utilFunc";
-import {useCart} from "../context/cart/CartProvider";
-import {useRouter} from "next/router";
-import useFetch from "../hooks/useFetch";
-import {ApiRoutes} from "../enums/ApiRoutes";
+
 import DeleteIcon from "../public/icons/DeleteIcon";
-import Loading from "../public/icons/Loading";
+import {ApiRoutes} from "../enums/ApiRoutes";
+import {useCart} from "../context/cart/CartProvider";
+import useFetch from "../hooks/useFetch";
+import Header from "../components/Header/Header";
+import {roundDecimal} from "../components/Util/utilFunc";
 import LoadingPage from "../components/Reusable/LoadingPage";
 
 
@@ -79,7 +74,7 @@ const ShoppingCart = () => {
                             ) : (
                                 <>
                                     {
-                                        cart?.products.map((item: any, index: number) => {
+                                        cart?.products.map((item) => {
                                             return (
                                                 <div className="flex flex-col gap-4 border-b-2 border-gray200 py-4"
                                                      key={item.productId}>

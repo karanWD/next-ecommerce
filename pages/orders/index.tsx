@@ -7,17 +7,9 @@ import Link from "next/link";
 import {ApiRoutes} from "../../enums/ApiRoutes";
 import OrderItem from "../../components/Reusable/OrderItem"
 import {roundDecimal} from "../../components/Util/utilFunc";
+import {OrderItemType} from "../../types";
 
-type OrderItemType = {
-  id: string
-  createdAt: string
-  numberOfProducts: number
-  status: "NEW" | "PENDING" | "ACCEPTED" | "CANCELED" | "DELIVERED"
-  totalWeight: number
-  totalWeightWithWage: number
-  _id: string
-}
-type Orders = { orders: OrderItemType[] }
+
 const OrdersPage = () => {
   const {request, response, loading} = useFetch()
   useEffect(() => {
@@ -39,12 +31,12 @@ const OrdersPage = () => {
           </div>
 
           {
-            response?.orders?.map((item: OrderItemType, index: number) => {
+            response?.orders.map((item:OrderItemType, index: number) => {
               return (
                   <Link href={"orders/" + item._id} key={"ORDER_ITEM_INDEX+" + index}>
                     <a>
                       <OrderItem createdAt={item.createdAt} status={item.status}
-                                 totalWeightWithWage={roundDecimal(item.totalWeightWithWage)}
+                                 totalWeightWithWage={+roundDecimal(item.totalWeightWithWage)}
                                  numberOfProducts={item.numberOfProducts}
                       />
                     </a>
