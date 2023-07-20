@@ -4,7 +4,7 @@ export interface ResponseTypes {
     loading: boolean,
     response: any
     error: any
-    request: (params:AxiosRequestConfig) => void
+    request: (params:AxiosRequestConfig) => Promise<any>
 }
 
 export interface CatItemsType {
