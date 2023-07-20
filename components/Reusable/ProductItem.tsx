@@ -3,7 +3,6 @@ import Image from "next/image";
 import {useTranslations} from "next-intl";
 import Link from "next/link"
 import {ProductItemType} from "../../types";
-import {extend} from "ssr-window";
 
 interface ProductCardType extends ProductItemType {
     weight: string

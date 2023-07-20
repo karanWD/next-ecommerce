@@ -21,8 +21,8 @@ const ProductsContainer:FC<Props> = ({title,desc,products}) => {
 
                   return(
                         <div  key={"PRODUCT_ITEM_"+index} className='col-span-2 md:col-span-1'>
-                        <ProductItem weight={weightText} name={item.title} link={"products/"+item.slug}
-                                     image={item.thumbnail} wage={item.wage}/>
+                        <ProductItem weight={weightText} title={item.title} link={"products/"+item.slug}
+                                     thumbnail={item.thumbnail} wage={item.wage}/>
                         </div>
                     )
                 })}
