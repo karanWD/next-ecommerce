@@ -6,7 +6,7 @@ export const initialContextValues: CartType = {
         products: [],
         totalCartWeightWithWage: 0,
         totalCartWeight: 0,
-        updatedAt: "string"
+        updatedAt: ""
     },
     updateCart: () => {}
 };

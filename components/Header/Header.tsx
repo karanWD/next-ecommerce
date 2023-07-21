@@ -42,14 +42,14 @@ const Header: React.FC<Props> = ({ title }) => {
     <>
       <AppHeader title={title} />
 
-      <a
-        href="#main-content"
-        className="whitespace-nowrap absolute z-50 left-4 opacity-90 rounded-md bg-white px-4 py-3 transform -translate-y-40 focus:translate-y-0 transition-all duration-300"
-      >
-        {t("skip_to_main_content")}
-      </a>
+      {/*<a*/}
+      {/*  href="#main-content"*/}
+      {/*  className="whitespace-nowrap absolute z-50 left-4 opacity-90 rounded-md bg-white px-4 py-3 transform -translate-y-40 focus:translate-y-0 transition-all duration-300"*/}
+      {/*>*/}
+      {/*  {t("skip_to_main_content")}*/}
+      {/*</a>*/}
 
-      <TopNav />
+      {/*<TopNav />*/}
 
       <nav
         className={`${
@@ -64,7 +64,7 @@ const Header: React.FC<Props> = ({ title }) => {
               <Menu />
             </div>
 
-            <div className="flex-1 flex justify-center items-center cursor-pointer">
+            <div className="flex-1 flex justify-center lg:justify-end items-center cursor-pointer">
               <div className="w-32 h-auto">
                 <Link href="/">
                   <a>
