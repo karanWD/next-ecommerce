@@ -12,7 +12,7 @@ const STATUSES = {
     title: "درحال بررسی",
     style: "bg-orange-100 text-orange-400"
   },
-  "ACCEPTED": {
+  "REGISTERED": {
     title: "ثبت شده",
     style: "bg-emerald-100 text-emerald-400"
   },
@@ -21,7 +21,7 @@ const STATUSES = {
     style: "bg-red-100 text-red-400"
   },
   "DELIVERED": {
-    title: "ارسال شده",
+    title: "تحویل داده شده",
     style: "bg-gray-100 text-gray-400"
   }
 }
