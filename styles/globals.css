@@ -52,6 +52,9 @@
   font-family: iranYekanRegular;
 }
 
+body{
+  direction: rtl;
+}
 .toggle-checkbox:checked {
   @apply: right-0 border-gray500;
   right: 0;

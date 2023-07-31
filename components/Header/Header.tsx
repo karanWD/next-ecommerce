@@ -58,7 +58,7 @@ const Header: React.FC<Props> = ({ title }) => {
       >
         <div className="app-max-width w-full">
           <div
-            className={`flex flex-row-reverse justify-between items-center app-x-padding ${styles.mainMenu}`}
+            className={`flex flex-row justify-between items-center app-x-padding ${styles.mainMenu}`}
           >
             <div className="flex-1  lg:flex-0 lg:hidden">
               <Menu />

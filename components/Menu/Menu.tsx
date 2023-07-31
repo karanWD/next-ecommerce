@@ -56,7 +56,7 @@ export default function Menu() {
           open={open}
           onClose={closeModal}
         >
-          <div className="min-h-screen rtl">
+          <div className="min-h-screen">
             <Transition.Child as={Fragment}>
               <Dialog.Overlay className="fixed inset-0 bg-gray500 opacity-50" />
             </Transition.Child>
@@ -65,9 +65,9 @@ export default function Menu() {
               enter="ease-linear duration-600"
               enterFrom="opacity-0"
               enterTo="opacity-100"
-              leave="ease-linear duration-300"
+              leave="ease-linear duration-150"
               leaveFrom="translate-x-0"
-              leaveTo="-translate-x-full"
+              leaveTo="translate-x-full"
             >
               <div
                 style={{ height: "100vh" }}
@@ -96,6 +96,14 @@ export default function Menu() {
 
                 <div className="mb-10 ">
                   <div className="itemContainer px-6 w-full flex flex-col justify-around items-center ">
+                    <Link href="/">
+                      <a
+                          className="w-full text-xl hover:bg-gray100 text-right py-2"
+                          onClick={closeModal}
+                      >
+                        {t("home")}
+                      </a>
+                    </Link>
                     <Link href="ring">
                       <a
                         className="w-full text-xl hover:bg-gray100 text-right py-2"

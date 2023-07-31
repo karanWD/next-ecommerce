@@ -1,7 +1,5 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import TextButton from "../Buttons/TextButton";
-import styles from "./Hero.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper/core";
 import {FC} from "react";
@@ -23,7 +21,7 @@ const Slideshow:FC<Props> = ({images}) => {
 
   return (
     <>
-      <div className="relative slide-container w-full z-20">
+      <div className="relative slide-container w-full z-20" dir="rtl">
         <Swiper
           slidesPerView={1}
           spaceBetween={0}
@@ -47,7 +45,7 @@ const Slideshow:FC<Props> = ({images}) => {
                   layout="responsive"
                   src={slider?.image??"/images/img1.png"}
                   width={572}
-                  height={572}
+                  height={336}
                   alt={"some name"}
                 />
               </div>
@@ -56,7 +54,7 @@ const Slideshow:FC<Props> = ({images}) => {
                   layout="responsive"
                   src={slider?.image??"/images/img1.png"}
                   width={720}
-                  height={720}
+                  height={360}
                   alt={"some name"}
                 />
               </div>
@@ -64,29 +62,29 @@ const Slideshow:FC<Props> = ({images}) => {
                 <Image
                   layout="responsive"
                   src={slider?.image??"/images/img1.png"}
-                  width={800}
-                  height={800}
+                  width={720}
+                  height={360}
                   alt={"some name"}
                 />
               </div>
-              <div
-                className={
-                  slider.rightText
-                    ? styles.rightTextSection
-                    : styles.leftTextSection
-                }
-              >
-                <span className={styles.subtitle}>{slider.subtitle}</span>
-                <span
-                  className={`${styles.title} text-center ${
-                    slider.rightText ? "sm:text-right" : "sm:text-left"
-                  }`}
-                >
-                  {slider.titleUp} <br />
-                  {slider.titleDown}
-                </span>
-                <TextButton value={t("shop_now")} />
-              </div>
+              {/*<div*/}
+              {/*  className={*/}
+              {/*    slider.rightText*/}
+              {/*      ? styles.rightTextSection*/}
+              {/*      : styles.leftTextSection*/}
+              {/*  }*/}
+              {/*>*/}
+              {/*  <span className={styles.subtitle}>{slider.subtitle}</span>*/}
+              {/*  <span*/}
+              {/*    className={`${styles.title} text-center ${*/}
+              {/*      slider.rightText ? "sm:text-right" : "sm:text-left"*/}
+              {/*    }`}*/}
+              {/*  >*/}
+              {/*    {slider.titleUp} <br />*/}
+              {/*    {slider.titleDown}*/}
+              {/*  </span>*/}
+              {/*  <TextButton value={t("shop_now")} />*/}
+              {/*</div>*/}
             </SwiperSlide>
           ))}
         </Swiper>

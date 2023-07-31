@@ -12,8 +12,6 @@ import {ApiRoutes} from "../enums/ApiRoutes";
 import {ResponseTypes} from "../types";
 
 
-
-
 const Home = () => {
     const t = useTranslations("Index");
     const {request, response, loading, error}:ResponseTypes = useFetch()
@@ -29,14 +27,10 @@ const Home = () => {
             <LoadingPage loaded={!loading && response}>
                 <main id="main-content">
                     <Slideshow images={response?.banners?.topHomePageBanners}/>
-                    <CategoryContainer data={response?.mainCategories?.slice(0, 4)}/>
-                    <ProductsContainer title={t("best_selling")}
-                                       desc={t("best_selling_desc")}
-                                       products={response?.specialCategory?.products}/>
-                    <CategoryContainer data={response?.mainCategories?.slice(4, 8)}/>
+                    <ProductsContainer title={t("best_selling")} desc={""} products={response?.specialCategory?.products}/>
+                    <CategoryContainer data={response?.mainCategories} title={t("category")} desc={""}/>
                     <div className="border-gray100 border-b-2"></div>
-                    <AboutUsContainer title={t("about_us")}
-                                      desc={t("about_us_desc")}/>
+                    <AboutUsContainer title={t("about_us")} desc={t("about_us_desc")}/>
                 </main>
             </LoadingPage>
         </>

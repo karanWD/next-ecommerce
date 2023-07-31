@@ -1,5 +1,6 @@
 {
   "Navigation": {
+    "home": "خانه",
     "skip_to_main_content": "Skip to main content",
     "eng": "Eng",
     "myn": "Myn",
@@ -120,18 +121,13 @@
     "go_back_to": "Go back to"
   },
   "Index": {
-    "new_arrivals": "New Arrivals",
-    "women_collection": "Women Collection",
-    "men_collection": "Men Collection",
+    "category": "دسته بندی",
     "best_selling": "پرفروش ها",
     "best_selling_desc": "پرفروش ترین محصولات اخیر",
     "add_to_cart": "Add to Cart",
-    "testimonial": "Testimonial",
-    "featured_products": "Featured Products",
     "see_more": "See More",
-    "loading": "Loading...",
+    "loading": "درحال بارگذاری...",
     "shop_now": "مشاهده محصولات",
-    "our_shop": "Our Shop",
     "about_us": "درباره تیــارا",
     "about_us_desc": "تیــارا سامانه هوشمند جهت ثبت سفارشات ساخت جواهرات برای بنکداران و فروشندگان بازار طلا می باشد و هدف آن ساده کردن فرآیند ثبت سفارشات ساخت طلا است"
 
@@ -195,8 +191,8 @@
     "count": "تعداد",
     "size": "سایز",
     "color": "رنگ",
-    "weight": "محدوده وزن",
-    "wage": "محدوده دستمزد",
+    "weight": "وزن حدودی",
+    "wage": "اجرت",
     "gram": "گرم",
     "percent": "درصد"
   }

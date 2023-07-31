@@ -13,11 +13,19 @@ type CatItemsType = {
 };
 
 type Props = {
-    data:CatItemsType[]
+    data:CatItemsType[],
+    title:string,
+    desc:string
 }
-const CategoryContainer:FC<Props> = ({data}) => {
+const CategoryContainer:FC<Props> = ({data,title,desc}) => {
     return (
-        <section className="w-full h-auto py-10 border border-b-2 border-gray100">
+        <section className="w-full h-auto py-6 border border-b-2 border-gray100">
+            <div className="flex justify-center">
+                <div className="w-3/4 sm:w-1/2 md:w-1/3 text-center mb-6">
+                    <h2 className="text-2xl mb-2">{title}</h2>
+                    <span className='text-gray400'>{desc}</span>
+                </div>
+            </div>
             <div
                 className="app-max-width app-x-padding h-full grid grid-cols-4 gap-2  ">
                 {data?.map((item, index) => {
