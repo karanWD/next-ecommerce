@@ -32,6 +32,7 @@ export interface CartItemType{
     colorName:string
     count:number
     totalWeightWithWage:number
+    totalWeight:number
     productId:string
 }
 

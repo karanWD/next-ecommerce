@@ -186,6 +186,7 @@
     "showing_results": "Showing {products} result(s)"
   },
   "Product": {
+    "textureAndSize": "سایز/تراش",
     "addToCart": "افزودن به سبد خرید",
     "pay": "پرداخت",
     "count": "تعداد",

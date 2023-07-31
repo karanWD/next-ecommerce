@@ -37,6 +37,9 @@ const ProductPage = () => {
       }
     }).then((res: any) => {
       updateCart(res)
+      setColor({id: "", value: "",images:[]})
+      setSize({id: "", value: "",images:[]})
+      setCount(1)
       toast.success("با موفقیت افزوده شد",)
     })
   }
@@ -52,7 +55,7 @@ const ProductPage = () => {
           <div className='flex flex-col gap-4 text-right'>
             <InfoContaincer name={response?.title}
                             images={ size.images?.length>0 ? size.images :[response?.thumbnail]}/>
-            <FeatureContainer title={t("size")} features={response?.sizes}
+            <FeatureContainer title={t("textureAndSize")} features={response?.sizes}
                               selectHandler={(data) => setSize(data)}
                               selected={size.id}/>
             <FeatureContainer title={t("color")} features={response?.colors}

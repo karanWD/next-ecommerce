@@ -9,14 +9,12 @@ type Props = {
 const InfoContainer:FC<Props> = ({images,name}) => {
   return (
       <div className="imgSection w-full md:w-1/2 h-full text-right">
-        <div className="w-full sm:w-3/4 h-full m-0 sm:m-4">
+        <div className="w-full sm:w-3/4 h-full m-0 sm:m-4 bg-gray-100">
           <Swiper
               slidesPerView={1}
               spaceBetween={0}
               loop={true}
-              pagination={{
-                clickable: true,
-              }}
+              pagination={{clickable: true,}}
               className="mySwiper sm:hidden"
           >
             {
@@ -26,7 +24,8 @@ const InfoContainer:FC<Props> = ({images,name}) => {
                         className="each-slide w-full"
                         src={image}
                         width={1000}
-                        height={1000}
+                        height={700}
+                        objectFit="cover"
                         alt={"PRODUCT_IMAGE_"+index}
                     />
                   </SwiperSlide>
@@ -35,7 +34,7 @@ const InfoContainer:FC<Props> = ({images,name}) => {
           </Swiper>
         </div>
         <div className='p-4'>
-          <h2 className='text-2xl block font-bold text-gray800 '>{name}</h2>
+          <h2 className='text-2xl block font-bold text-gray800'>{name}</h2>
         </div>
       </div>
   );

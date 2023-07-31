@@ -52,7 +52,7 @@ const MyApp = ({Component, pageProps}: AppCustomProps) => {
                 <ProvideAuth>
                     <ProvideCart>
                         <Component {...pageProps} />
-                        <ToastContainer rtl position={toast.POSITION.TOP_CENTER} theme="colored" limit={1}/>
+                        <ToastContainer autoClose={1500} rtl position={toast.POSITION.TOP_CENTER} theme="colored" limit={1}/>
                     </ProvideCart>
                 </ProvideAuth>
             </NextIntlProvider>

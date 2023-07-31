@@ -11,7 +11,7 @@ const FeatureContainer: FC<Props> = ({title, features, selectHandler, selected})
   return (
       <div className='px-4 py-2'>
         <h4 className='text-lg mb-2'>{title}</h4>
-        <div className='flex gap-2 flex-wrap justify-end'>
+        <div className='flex  gap-2 flex-wrap '>
           {
             features?.map((item, index) => {
               return (

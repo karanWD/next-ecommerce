@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {useTranslations} from "next-intl";
 import {GetStaticProps} from "next";
+import Link from "next/link"
 
 import DeleteIcon from "../public/icons/DeleteIcon";
 import {ApiRoutes} from "../enums/ApiRoutes";
@@ -88,7 +89,7 @@ const ShoppingCart = () => {
         <LoadingPage loaded={!loading && response}>
           <main id="main-content">
             <div className="app-max-width px-4 sm:px-8 md:px-20  mb-14 flex flex-col lg:flex-row">
-              <div className="w-full  mr-4">
+              <div className="w-full">
                 {cart.products.length === 0 ? (
                     <div className="w-full pt-64 text-center flex items-center justify-center">
                       <div>{t("cart_is_empty")}</div>
@@ -100,17 +101,20 @@ const ShoppingCart = () => {
                           return (
                               <div className="flex flex-col gap-4 border-b-2 border-gray200 py-4"
                                    key={item.productId}>
-                                <div className='flex flex-row-reverse justify-between items-start'>
+                                <div className='flex justify-between items-start'>
                                   <div>
-                                    <div>{item.title}</div>
-                                    <div className='text-right'>
-                                      <span className="text-gray-400 text-xs"> سایز:</span>
-                                      <span className="text-xs mx-2">{item.sizeName}</span>
+                                    <Link href={"/products/"+item.slug}><a>{item.title}</a></Link>
+                                    <div className="flex gap-2">
+                                      <div className='text-right'>
+                                        <span className="text-gray-500 text-sm"> سایز:</span>
+                                        <span className="text-sm mx-2">{item.sizeName}</span>
+                                      </div>
+                                      <div className="text-right">
+                                        <span className="text-gray-500 text-sm"> رنگ:</span>
+                                        <span className="text-sm mx-2">{item.colorName}</span>
+                                      </div>
                                     </div>
-                                    <div className="text-right">
-                                      <span className="text-gray-400 text-xs"> رنگ:</span>
-                                      <span className="text-xs mx-2">{item.colorName}</span>
-                                    </div>
+
                                   </div>
                                   <div className='w-4 h-5 text-red cursor-pointer'
                                        onClick={() => deleteHandler(item)}>
@@ -118,14 +122,14 @@ const ShoppingCart = () => {
                                   </div>
                                 </div>
 
-                                <div className='flex flex-row-reverse justify-between items-center'>
+                                <div className='flex  justify-between items-center'>
                                   <CardCounter count={item.count ?? 0}
                                                addHandler={() => addHandler(item)}
                                                deleteHandler={() => decrementHandler(item)}/>
                                   <div
-                                      className="text-right text-gray400 flex flex-row-reverse items-center gap-1">
-                                    <span>{roundDecimal(item.totalWeightWithWage)}</span>
-                                    <span className='text-gray-400 text-xs'>{t("gram")}</span>
+                                      className="text-right text-gray-700 flex  items-center gap-1">
+                                    <span>{roundDecimal(item.totalWeight)}</span>
+                                    <span className='text-gray-500 text-xs'>{t("gram")}</span>
                                   </div>
                                 </div>
                               </div>
@@ -142,12 +146,6 @@ const ShoppingCart = () => {
                           <div className="flex justify-between py-3">
                             <span>{roundDecimal(cart.totalCartWeightWithWage)}</span>
                             <span>{t("grand_total")}</span>
-                          </div>
-                          <div className="flex justify-between py-3">
-                                    <span>
-                                        {new Date(cart.updatedAt).toLocaleString("fa-ir")}
-                                    </span>
-                            <span>{t("invoiceDate")}</span>
                           </div>
                         </div>
                       </div>

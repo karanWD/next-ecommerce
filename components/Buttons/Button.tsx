@@ -37,7 +37,8 @@ const Button: FC<Props> = ({
           : "bg-gray500 text-gray100 hover:text-gray300"
       } ${extraClass}`}
     >
-      {value} <span className="ml-1">{children}</span>
+      {value}
+      {children && <span className="ml-1">{children}</span>}
     </button>
   );
 };
