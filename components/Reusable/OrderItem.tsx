@@ -2,7 +2,6 @@ import React, {FC} from 'react';
 import LeftArrow from "../../public/icons/LeftArrow";
 import {OrderItemType} from "../../types";
 
-
 const STATUSES = {
   "NEW": {
     title: "جدید",
@@ -26,15 +25,15 @@ const STATUSES = {
   }
 }
 
-const OrderItem: FC<OrderItemType> = ({createdAt, status, totalWeightWithWage, numberOfProducts}) => {
+const OrderItem: FC<OrderItemType> = ({createdAt, status, totalWeight, numberOfProducts}) => {
   const STYLE = STATUSES[status].style + " " + "text-sm py-0.25 px-3"
   return (
-      <div className="flex flex-row-reverse items-center justify-between p-4 border-b border-gray-200 ">
+      <div className="flex items-center justify-between p-4 border-b border-gray-200 ">
         <div className="flex flex-col flex-1 text-right">
           <div className="rtl">سفارش - {new Date(createdAt).toLocaleString("fa-ir")}</div>
-          <div className="flex flex-row-reverse items-center gap-1.5 mt-2">
+          <div className="flex items-center gap-1.5 mt-2">
             <span className={STYLE}>{STATUSES[status].title}</span>
-            <span className="  py-0.25 px-3 text-sm text-gray400 bg-gray-100 rtl"> مجموع وزن: {totalWeightWithWage}</span>
+            <span className="  py-0.25 px-3 text-sm text-gray400 bg-gray-100 rtl"> مجموع وزن: {totalWeight}</span>
             <span className="  py-0.25 px-3 text-sm text-gray400 bg-gray-100 rtl"> تعداد: {numberOfProducts}</span>
           </div>
         </div>

@@ -20,7 +20,7 @@ const OrdersPage = () => {
       <>
         <Header/>
         <LoadingPage loaded={!loading && response}>
-          <div className="text-xl font-bold text-right p-4 pb-2 flex flex-row-reverse items-center gap-2">
+          <div className="text-xl font-bold text-right p-4 pb-2 flex  items-center gap-2">
             <span>سفارشات</span>
             <span className="flex text-sm">
               (
@@ -36,7 +36,7 @@ const OrdersPage = () => {
                   <Link href={"orders/" + item._id} key={"ORDER_ITEM_INDEX+" + index}>
                     <a>
                       <OrderItem createdAt={item.createdAt} status={item.status}
-                                 totalWeightWithWage={+roundDecimal(item.totalWeightWithWage)}
+                                 totalWeight={+roundDecimal(item.totalWeight as number)}
                                  numberOfProducts={item.numberOfProducts}
                       />
                     </a>

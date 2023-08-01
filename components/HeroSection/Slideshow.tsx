@@ -7,11 +7,8 @@ import {FC} from "react";
 SwiperCore.use([Pagination, Navigation, Autoplay]);
 
 type ImageItemType = {
-  image: string,
-  subtitle?: string,
-  titleUp?:string,
-  titleDown?: string,
-  rightText?: false,
+  link: string,
+  title:string
 }
 type Props={
   images:ImageItemType[]
@@ -27,15 +24,15 @@ const Slideshow:FC<Props> = ({images}) => {
           spaceBetween={0}
           loop={true}
           autoplay={{
-            delay: 5000,
+            delay: 10000,
             disableOnInteraction: false,
           }}
-          navigation={true}
-          pagination={{
-            clickable: true,
-            type: "fraction",
-            dynamicBullets: true,
-          }}
+          // navigation={true}
+          // pagination={{
+          //   clickable: true,
+          //   type: "fraction",
+          //   dynamicBullets: true,
+          // }}
           className="mySwiper"
         >
           {images.map((slider,index) => (
@@ -43,48 +40,30 @@ const Slideshow:FC<Props> = ({images}) => {
               <div className="hidden lg:block">
                 <Image
                   layout="responsive"
-                  src={slider?.image??"/images/img1.png"}
+                  src={slider?.link??"/images/img1.png"}
                   width={572}
                   height={336}
-                  alt={"some name"}
+                  alt={slider?.title}
                 />
               </div>
               <div className="hidden sm:block lg:hidden">
                 <Image
                   layout="responsive"
-                  src={slider?.image??"/images/img1.png"}
+                  src={slider?.link??"/images/img1.png"}
                   width={720}
                   height={360}
-                  alt={"some name"}
+                  alt={slider?.title}
                 />
               </div>
               <div className="sm:hidden">
                 <Image
                   layout="responsive"
-                  src={slider?.image??"/images/img1.png"}
-                  width={720}
-                  height={360}
-                  alt={"some name"}
+                  src={slider?.link??"/images/img1.png"}
+                  width={375}
+                  height={125}
+                  alt={slider?.title}
                 />
               </div>
-              {/*<div*/}
-              {/*  className={*/}
-              {/*    slider.rightText*/}
-              {/*      ? styles.rightTextSection*/}
-              {/*      : styles.leftTextSection*/}
-              {/*  }*/}
-              {/*>*/}
-              {/*  <span className={styles.subtitle}>{slider.subtitle}</span>*/}
-              {/*  <span*/}
-              {/*    className={`${styles.title} text-center ${*/}
-              {/*      slider.rightText ? "sm:text-right" : "sm:text-left"*/}
-              {/*    }`}*/}
-              {/*  >*/}
-              {/*    {slider.titleUp} <br />*/}
-              {/*    {slider.titleDown}*/}
-              {/*  </span>*/}
-              {/*  <TextButton value={t("shop_now")} />*/}
-              {/*</div>*/}
             </SwiperSlide>
           ))}
         </Swiper>

@@ -47,7 +47,7 @@ const OrderDetail = () => {
         <Header/>
         <LoadingPage loaded={!loading && response}>
           <div className="app-x-padding py-4 text-right">
-            <div className="flex flex-row-reverse justify-between">
+            <div className="flex justify-between">
               <div>
                 <h2 className="text-xl font-bold">جزئیات سفارش</h2>
                 <div>
@@ -63,7 +63,7 @@ const OrderDetail = () => {
             </div>
 
             <div className="mt-4 pt-4 border-t">
-              <div className="flex flex-row-reverse justify-between">
+              <div className="flex justify-between">
                 <h4>
                   محصولات
                 </h4>
@@ -74,32 +74,38 @@ const OrderDetail = () => {
                   )
                 </div>
               </div>
+              <div className="flex nowrap justify-between items-center mt-4">
+                <div style={{minWidth:"50px"}}>نام محصول</div>
+                <div style={{minWidth:"50px"}}>سایز</div>
+                <div style={{minWidth:"50px"}}>رنگ</div>
+                <div style={{minWidth:"50px"}}>وزن</div>
+                <div style={{minWidth:"50px"}}>مجموع وزن</div>
+                <div style={{minWidth:"50px"}}>اجرت</div>
+                <div style={{minWidth:"50px"}}>تعداد</div>
+              </div>
               {
                 response?.products.map((item: any, index: number) => {
                   return (
                       <div className="flex flex-col gap-4 border-b-2 border-gray200 py-4"
                            key={item.productId}>
                         <div className=''>
-                          <div>{item.title}</div>
                           <div className="flex flex-wrap flex-row-reverse">
                             <div className='text-right w-1/3'>
-                              <span className="text-gray-500 text-xs"> سایز:</span>
+                              <span className="text-xs mx-2">{item.title}</span>
+                            </div>
+                            <div className='text-right w-1/3'>
                               <span className="text-xs mx-2">{item.sizeName}</span>
                             </div>
                             <div className="text-right w-1/3">
-                              <span className="text-gray-500 text-xs"> رنگ:</span>
                               <span className="text-xs mx-2">{item.colorName}</span>
                             </div>
                             <div className="text-right w-1/3">
-                              <span className="text-gray-500 text-xs"> تعداد:</span>
                               <span className="text-xs mx-2">{item.count}</span>
                             </div>
                             <div className="text-right w-full">
-                              <span className="text-gray-500 text-xs"> مجموع وزن:</span>
                               <span className="text-xs mx-2">{roundDecimal(item.totalWeight)+" "+t("gram")}</span>
                             </div>
                             <div className="text-right w-full">
-                              <span className="text-gray-500 text-xs"> مجموع وزن با اجرت:</span>
                               <span className="text-xs mx-2">{roundDecimal(item.totalWeightWithWage)+" "+t("gram")}</span>
                             </div>
                           </div>
@@ -112,12 +118,12 @@ const OrderDetail = () => {
                 <div className="border border-gray500 divide-y-2 divide-gray200 p-6">
                   <h2 className="text-xl mb-3">{t("invoice")}</h2>
                   <div className="flex justify-between py-2">
-                    <span>{roundDecimal(response?.totalCartWeight)}</span>
                     <span className="uppercase">{t("subtotal")}</span>
+                    <span>{roundDecimal(response?.totalCartWeight)}</span>
                   </div>
                   <div className="flex justify-between py-3">
-                    <span>{roundDecimal(response?.totalCartWeightWithWage)}</span>
                     <span>{t("grand_total")}</span>
+                    <span>{roundDecimal(response?.totalCartWeightWithWage)}</span>
                   </div>
                 </div>
               </div>

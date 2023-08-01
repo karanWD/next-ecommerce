@@ -34,6 +34,7 @@ export interface CartItemType{
     totalWeightWithWage:number
     totalWeight:number
     productId:string
+    slug:string
 }
 
 export interface CartType{
@@ -50,8 +51,8 @@ export interface OrderItemType {
     createdAt: string
     numberOfProducts: number
     status: "NEW" | "PENDING" | "ACCEPTED" | "CANCELED" | "DELIVERED"
-    totalWeightWithWage: number
-    totalWeight?: number
+    totalWeightWithWage?: number
+    totalWeight?: number | undefined
     _id?: string
 }
 

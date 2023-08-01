@@ -5,7 +5,8 @@ export enum ApiRoutes {
   CLIENT_CART="/cart",
   USER_LOGIN="/login/mobile",
   USER_ORDERS="/profile/orders",
-  ADD_ORDER="/order"
+  ADD_ORDER="/order",
+  PROFILE="/profiles",
 }
 
 

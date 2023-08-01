@@ -2,7 +2,6 @@ import {useEffect, useState} from "react";
 import {useTranslations} from "next-intl";
 import {GetStaticProps} from "next";
 import Link from "next/link"
-
 import DeleteIcon from "../public/icons/DeleteIcon";
 import {ApiRoutes} from "../enums/ApiRoutes";
 import {useCart} from "../context/cart/CartProvider";
@@ -82,13 +81,12 @@ const ShoppingCart = () => {
         })
   }, [])
 
-
   return (
       <div className=' flex flex-col'>
         <Header title={`سبدخرید - فرووشگاه تیــارا`}/>
         <LoadingPage loaded={!loading && response}>
           <main id="main-content">
-            <div className="app-max-width px-4 sm:px-8 md:px-20  mb-14 flex flex-col lg:flex-row">
+            <div className="app-max-width px-4 sm:px-8 md:px-20  mb-14 flex flex-col lg:flex-row pb-8">
               <div className="w-full">
                 {cart.products.length === 0 ? (
                     <div className="w-full pt-64 text-center flex items-center justify-center">
@@ -125,7 +123,7 @@ const ShoppingCart = () => {
                                 <div className='flex  justify-between items-center'>
                                   <CardCounter count={item.count ?? 0}
                                                addHandler={() => addHandler(item)}
-                                               deleteHandler={() => decrementHandler(item)}/>
+                                               deleteHandler={item.count > 1 ? () => decrementHandler(item) : ()=>{}}/>
                                   <div
                                       className="text-right text-gray-700 flex  items-center gap-1">
                                     <span>{roundDecimal(item.totalWeight)}</span>
@@ -140,23 +138,23 @@ const ShoppingCart = () => {
                         <div className="border border-gray500 divide-y-2 divide-gray200 p-6">
                           <h2 className="text-xl mb-3">{t("invoice")}</h2>
                           <div className="flex justify-between py-2">
-                            <span>{roundDecimal(cart.totalCartWeight)}</span>
                             <span className="uppercase">{t("subtotal")}</span>
+                            <span>{roundDecimal(cart.totalCartWeight)}</span>
                           </div>
                           <div className="flex justify-between py-3">
-                            <span>{roundDecimal(cart.totalCartWeightWithWage)}</span>
                             <span>{t("grand_total")}</span>
+                            <span>{roundDecimal(cart.totalCartWeightWithWage)}</span>
                           </div>
                         </div>
                       </div>
-                      <div className="mt-4">
+                      <div className="mt-4 bg-white fixed bottom-0 left-0 right-0 px-4 py-3 border-t border-gray-300">
                         <Button size="lg" value={"ثبت سفارش"} onClick={() => setSubmit(true)} extraClass={"w-full "}/>
                       </div>
                       <Drawer isOpen={isSubmit} closeHandler={()=>setSubmit(false)}>
                         <div>
                           <div className="flex justify-between p-4 bg-gray-200 rounded-lg">
-                            <span>{roundDecimal(cart.totalCartWeightWithWage)}</span>
-                            <span className="uppercase">{t("grand_total")}</span>
+                            <span className="uppercase">{t("subtotal")}</span>
+                            <span>{roundDecimal(cart.totalCartWeight)}</span>
                           </div>
                           <div className="mt-8 text-right">
                             <h4 className="font-bold">آیا از ثبت سفارش خود مطمئن هستید؟</h4>
@@ -187,9 +185,7 @@ export const getStaticProps: GetStaticProps = async ({locale}) => {
     },
   };
 };
-
 export default ShoppingCart;
-
 
 export const CardCounter = ({count, addHandler, deleteHandler}: {
   count: number,
@@ -200,19 +196,19 @@ export const CardCounter = ({count, addHandler, deleteHandler}: {
       <div>
         <div className="w-24 h-8 sm:h-auto sm:w-3/4 md:w-2/6 mx-auto flex sm:divide-x-2 divide-gray300">
           <div
-              onClick={deleteHandler}
-              className="h-full w-12 flex justify-center items-center cursor-pointer border border-gray300  hover:bg-gray500 hover:text-gray100"
+              onClick={addHandler}
+              className="h-full w-12 flex justify-center items-center cursor-pointer hover:bg-gray500 border border-gray300  hover:text-gray100"
           >
-            -
+            +
           </div>
           <div className="h-full w-12 flex justify-center items-center pointer-events-none">
             {count}
           </div>
           <div
-              onClick={addHandler}
-              className="h-full w-12 flex justify-center items-center cursor-pointer hover:bg-gray500 border border-gray300  hover:text-gray100"
+              onClick={deleteHandler}
+              className="h-full w-12 flex justify-center items-center cursor-pointer border border-gray300  hover:bg-gray500 hover:text-gray100"
           >
-            +
+            -
           </div>
         </div>
       </div>

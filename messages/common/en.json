@@ -48,7 +48,8 @@
     "no_result": "نتیجه ای یافت نشد",
     "sort_by_latest": "جدیدترین ها",
     "sort_by_price": "کمترین به بیشترین هزینه",
-    "sort_by_price_desc": "بیشترین به کمترین هزینه"
+    "sort_by_price_desc": "بیشترین به کمترین هزینه",
+    "logout": "خروج از حساب کاربری"
   },
   "CartWishlist": {
     "wishlist": "Wishlist",

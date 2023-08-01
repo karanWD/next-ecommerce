@@ -144,6 +144,7 @@ function useProvideAuth() {
       setUser(user);
       setCookies("user", JSON.stringify(user));
       return {
+        token:user.token,
         success: true,
         message: "login_successful",
       };

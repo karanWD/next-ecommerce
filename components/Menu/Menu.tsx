@@ -8,6 +8,8 @@ import { useRouter } from "next/router";
 import MenuIcon from "../../public/icons/MenuIcon";
 import { useAuth } from "../../context/AuthContext";
 import BagIcon from "../../public/icons/BagIcon";
+import Button from "../Buttons/Button";
+import {removeCookies} from "cookies-next";
 
 export default function Menu() {
   const t = useTranslations("Navigation");
@@ -34,6 +36,12 @@ export default function Menu() {
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     setSearchValue((e.target as HTMLInputElement).value);
   };
+
+  const logoutHandler = () =>{
+    removeCookies("user")
+    removeCookies("cart")
+    router.push("/")
+  }
 
   return (
     <>
@@ -94,7 +102,7 @@ export default function Menu() {
                   </button>
                 </div>
 
-                <div className="mb-10 ">
+                <div className="mb-10 mt-4">
                   <div className="itemContainer px-6 w-full flex flex-col justify-around items-center ">
                     <Link href="/">
                       <a
@@ -190,7 +198,9 @@ export default function Menu() {
                       </a>
                     </Link>
                     <hr className="border border-gray300 w-full" />
-
+                    <div className="mt-4 w-full">
+                      <Button value={t("logout")} extraClass="w-full" onClick={logoutHandler} size={"lg"} />
+                    </div>
                   </div>
                 </div>
               </div>
