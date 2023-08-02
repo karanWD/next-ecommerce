@@ -12,23 +12,23 @@ import LoadingPage from "../../components/Reusable/LoadingPage";
 const STATUSES = {
   "NEW": {
     title: "جدید",
-    style: "bg-blue-100 text-blue-400"
+    style: "bg-blue-50 text-blue-400"
   },
   "PENDING": {
     title: "درحال بررسی",
-    style: "bg-orange-100 text-orange-400"
+    style: "bg-orange-50 text-orange-400"
   },
   "REGISTERED": {
     title: "ثبت شده",
-    style: "bg-emerald-100 text-emerald-400"
+    style: "bg-emerald-50 text-emerald-400"
   },
   "CANCELED": {
     title: "لغو شده",
-    style: "bg-red-100 text-red-400"
+    style: "bg-red-50 text-red-400"
   },
   "DELIVERED": {
     title: "تحویل داده شده",
-    style: "bg-gray-100 text-gray-400"
+    style: "bg-gray-50 text-gray-400"
   }
 }
 
@@ -74,46 +74,52 @@ const OrderDetail = () => {
                   )
                 </div>
               </div>
-              <div className="flex nowrap justify-between items-center mt-4">
-                <div style={{minWidth:"50px"}}>نام محصول</div>
-                <div style={{minWidth:"50px"}}>سایز</div>
-                <div style={{minWidth:"50px"}}>رنگ</div>
-                <div style={{minWidth:"50px"}}>وزن</div>
-                <div style={{minWidth:"50px"}}>مجموع وزن</div>
-                <div style={{minWidth:"50px"}}>اجرت</div>
-                <div style={{minWidth:"50px"}}>تعداد</div>
+
+
+              <div className="relative overflow-x-auto  mt-8">
+                <table className="w-full text-sm  text-gray-500 text-center whitespace-nowrap">
+                  <thead className="text-xs text-gray-700 uppercase bg-gray-100 ">
+                  <tr>
+                    <th scope="col" className="px-6 py-3">نام محصول</th>
+                    <th scope="col" className="px-6 py-3">سایز/تراش</th>
+                    <th scope="col" className="px-6 py-3">رنگ</th>
+                    <th scope="col" className="px-6 py-3">وزن</th>
+                    <th scope="col" className="px-6 py-3">اجرت</th>
+                    <th scope="col" className="px-6 py-3">تعداد</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {
+                    response?.products.map((item: any, index: number) => {
+                      return (
+                          <tr key={item.productId} className="bg-white border-b  ">
+                            <th scope="row"
+                                className="px-6 py-4 font-medium text-gray-900">
+                              {item.title}
+                            </th>
+                            <td className="px-6 py-4">
+                              {item.sizeName}
+                            </td>
+                            <td className="px-6 py-4">
+                              {item.colorName}
+                            </td>
+                            <td className="px-6 py-4">
+                              {roundDecimal(item.totalWeight) + " " + t("gram")}
+                            </td>
+                            <td className="px-6 py-4">
+                              {item.wage + " " + t("percent")}
+                            </td>
+                            <td className="px-6 py-4">
+                              {item.count}
+                            </td>
+                          </tr>
+                      );
+                    })
+                  }
+                  </tbody>
+                </table>
               </div>
-              {
-                response?.products.map((item: any, index: number) => {
-                  return (
-                      <div className="flex flex-col gap-4 border-b-2 border-gray200 py-4"
-                           key={item.productId}>
-                        <div className=''>
-                          <div className="flex flex-wrap flex-row-reverse">
-                            <div className='text-right w-1/3'>
-                              <span className="text-xs mx-2">{item.title}</span>
-                            </div>
-                            <div className='text-right w-1/3'>
-                              <span className="text-xs mx-2">{item.sizeName}</span>
-                            </div>
-                            <div className="text-right w-1/3">
-                              <span className="text-xs mx-2">{item.colorName}</span>
-                            </div>
-                            <div className="text-right w-1/3">
-                              <span className="text-xs mx-2">{item.count}</span>
-                            </div>
-                            <div className="text-right w-full">
-                              <span className="text-xs mx-2">{roundDecimal(item.totalWeight)+" "+t("gram")}</span>
-                            </div>
-                            <div className="text-right w-full">
-                              <span className="text-xs mx-2">{roundDecimal(item.totalWeightWithWage)+" "+t("gram")}</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                  );
-                })
-              }
+
               <div className="h-full w-full lg:w-4/12 mt-10 lg:mt-0 text-right">
                 <div className="border border-gray500 divide-y-2 divide-gray200 p-6">
                   <h2 className="text-xl mb-3">{t("invoice")}</h2>

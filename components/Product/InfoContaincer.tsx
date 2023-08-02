@@ -8,14 +8,19 @@ type Props = {
 }
 const InfoContainer:FC<Props> = ({images,name}) => {
   return (
-      <div className="imgSection w-full md:w-1/2 h-full text-right">
-        <div className="w-full sm:w-3/4 h-full m-0 sm:m-4 bg-gray-100">
+      <div className="imgSection w-full  h-full text-right">
+        <div className="w-full  h-full m-0  bg-gray-100">
           <Swiper
               slidesPerView={1}
               spaceBetween={0}
-              loop={true}
               pagination={{clickable: true,}}
-              className="mySwiper sm:hidden"
+              className="mySwiper"
+             breakpoints={{
+               560:{
+                 slidesPerView:2,
+                 spaceBetween:10
+               }
+             }}
           >
             {
               images.map((image,index)=>(

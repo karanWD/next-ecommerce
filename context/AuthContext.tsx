@@ -138,6 +138,7 @@ function useProvideAuth() {
         // fullname: loginResponse.data.fullname,
         // phone: loginResponse.data.phone,
         // shippingAddress: loginResponse.data.shippingAddress,
+        fullname:loginResponse.name,
         role: loginResponse.role,
         token: loginResponse.token,
       };

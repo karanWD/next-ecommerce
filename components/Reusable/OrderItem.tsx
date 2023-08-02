@@ -5,23 +5,23 @@ import {OrderItemType} from "../../types";
 const STATUSES = {
   "NEW": {
     title: "جدید",
-    style: "bg-blue-100 text-blue-400"
+    style: "bg-blue-50 text-blue-400"
   },
   "PENDING": {
     title: "درحال بررسی",
-    style: "bg-orange-100 text-orange-400"
+    style: "bg-orange-50 text-orange-400"
   },
   "REGISTERED": {
     title: "ثبت شده",
-    style: "bg-emerald-100 text-emerald-400"
+    style: "bg-emerald-50 text-emerald-400"
   },
   "CANCELED": {
     title: "لغو شده",
-    style: "bg-red-100 text-red-400"
+    style: "bg-red-50 text-red-400"
   },
   "DELIVERED": {
     title: "تحویل داده شده",
-    style: "bg-gray-100 text-gray-400"
+    style: "bg-gray-50 text-gray-400"
   }
 }
 

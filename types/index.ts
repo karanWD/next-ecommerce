@@ -35,6 +35,7 @@ export interface CartItemType{
     totalWeight:number
     productId:string
     slug:string
+    wage:number
 }
 
 export interface CartType{

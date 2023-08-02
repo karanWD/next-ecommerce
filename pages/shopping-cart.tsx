@@ -111,6 +111,10 @@ const ShoppingCart = () => {
                                         <span className="text-gray-500 text-sm"> رنگ:</span>
                                         <span className="text-sm mx-2">{item.colorName}</span>
                                       </div>
+                                      <div className="text-right">
+                                        <span className="text-gray-500 text-sm"> اجرت:</span>
+                                        <span className="text-sm mx-2">{item.wage+" "+t("percent")}</span>
+                                      </div>
                                     </div>
 
                                   </div>
