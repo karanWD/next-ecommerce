@@ -50,6 +50,7 @@ export default function Menu() {
 
   const changeWageHandler = () =>{
     request({
+      method:"PATCH",
       url:ApiRoutes.UPDATE_WAGE_VISIBILITY,
       data:{
         wageIsActive:!user?.showWage
@@ -105,14 +106,14 @@ export default function Menu() {
                             className="justify-center"
                             src="/logo/tiara-logo.png"
                             alt="Picture of the author"
-                            width={85}
-                            height={22}
+                            width={120}
+                            height={35}
                         />
                       </a>
                     </Link>
                     <button
                         type="button"
-                        className="outline-none focus:outline-none text-3xl sm:text-2xl"
+                        className="outline-none focus:outline-none text-2xl "
                         onClick={closeModal}
                     >
                       &#10005;
@@ -205,7 +206,7 @@ export default function Menu() {
                       <div className="flex items-center justify-between gap-8 py-3">
                         <div className="text-right">
                           <div className="text-black">نمایش اجرت</div>
-                          <div className="text-gray-500 text-sm">با فعالسازی مجموع وزن همراه با اجرت نمایش داده می شود</div>
+                          <div className="text-gray-500 text-sm">با فعالسازی میزان اجرت نمایش داده می شود</div>
                         </div>
                          <Switch handleChange={changeWageHandler} isChecked={user?.showWage as boolean} />
                       </div>
