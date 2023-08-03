@@ -50,7 +50,7 @@ export default function Menu() {
 
   const changeWageHandler = () =>{
     request({
-      url:ApiRoutes.PROFILE+"/wage-show",
+      url:ApiRoutes.UPDATE_WAGE_VISIBILITY,
       data:{
         wageIsActive:!user?.showWage
       }
