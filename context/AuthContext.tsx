@@ -1,6 +1,6 @@
 import axios from "axios";
 import {getCookie, removeCookies, setCookies} from "cookies-next";
-import React, {createContext, useContext, useEffect, useState} from "react";
+import React, {createContext, SetStateAction, useContext, useEffect, useState} from "react";
 import {ApiRoutes} from "../enums/ApiRoutes";
 
 type authType = {
@@ -11,7 +11,6 @@ type authType = {
       password: string,
       shippingAddress: string,
       phone: string,
-
   ) => Promise<{
     success: boolean;
     message: string;
@@ -28,6 +27,7 @@ type authType = {
     message: string;
   }>;
   logout?: () => void;
+  updateUser?:(key:string,value:any)=>void
 };
 
 const initialAuth: authType = {
@@ -37,13 +37,14 @@ const initialAuth: authType = {
 const authContext = createContext<authType>(initialAuth);
 
 type User = {
+  role?: string
+  token: string;
+  fullname?: string;
+  showWage?: boolean,
   id?: number;
   email?: string;
-  fullname?: string;
   shippingAddress?: string;
   phone?: string;
-  token: string;
-  role?:string
 };
 
 // Provider component that wraps your app and makes auth object ...
@@ -138,14 +139,15 @@ function useProvideAuth() {
         // fullname: loginResponse.data.fullname,
         // phone: loginResponse.data.phone,
         // shippingAddress: loginResponse.data.shippingAddress,
-        fullname:loginResponse.name,
+        showWage: loginResponse.wageIsActive,
+        fullname: loginResponse.name,
         role: loginResponse.role,
         token: loginResponse.token,
       };
       setUser(user);
       setCookies("user", JSON.stringify(user));
       return {
-        token:user.token,
+        token: user.token,
         success: true,
         message: "login_successful",
       };
@@ -185,9 +187,18 @@ function useProvideAuth() {
     removeCookies("user");
   };
 
+  const updateUser = (key:string, value:any):void => {
+    setUser((prev):any => ({
+          ...prev,
+          [key]: value
+        })
+    )
+  }
+
   // Return the user object and auth methods
   return {
     user,
+    updateUser,
     register,
     login,
     forgotPassword,

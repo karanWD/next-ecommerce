@@ -6,7 +6,7 @@ export enum ApiRoutes {
   USER_LOGIN="/login/mobile",
   USER_ORDERS="/profile/orders",
   ADD_ORDER="/order",
-  PROFILE="/profiles",
+  PROFILE="/profile",
 }
 
 

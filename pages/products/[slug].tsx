@@ -54,6 +54,7 @@ const ProductPage = () => {
         <LoadingPage loaded={!loading && response}>
           <div className='flex flex-col gap-4 text-right'>
             <InfoContaincer name={response?.title}
+                            wage={response?.wage}
                             images={ size.images?.length>0 ? size.images :[response?.thumbnail]}/>
             <FeatureContainer title={t("textureAndSize")} features={response?.sizes}
                               selectHandler={(data) => setSize(data)}

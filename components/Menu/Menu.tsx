@@ -11,14 +11,18 @@ import BagIcon from "../../public/icons/BagIcon";
 import Button from "../Buttons/Button";
 import {removeCookies} from "cookies-next";
 import LeftArrow from "../../public/icons/LeftArrow";
+import Switch from "../Switch/Switch";
+import useFetch from "../../hooks/useFetch";
+import {ApiRoutes} from "../../enums/ApiRoutes";
 
 export default function Menu() {
   const t = useTranslations("Navigation");
   const router = useRouter();
   const {asPath, locale} = router;
-  const {user} = useAuth();
+  const {user,updateUser} = useAuth();
   const [open, setOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const {request}=useFetch()
 
   function closeModal() {
     setOpen(false);
@@ -43,6 +47,18 @@ export default function Menu() {
     removeCookies("cart")
     router.push("/")
   }
+
+  const changeWageHandler = () =>{
+    request({
+      url:ApiRoutes.PROFILE+"/wage-show",
+      data:{
+        wageIsActive:!user?.showWage
+      }
+    }).then(res=>{
+      updateUser && updateUser("showWage",!user?.showWage)
+    })
+  }
+
 
   return (
       <>
@@ -186,14 +202,12 @@ export default function Menu() {
                         </a>
                       </Link>
                       <hr className="border border-gray300 w-full mt-2"/>
-                      <div className="flex items-center justify-between py-3">
+                      <div className="flex items-center justify-between gap-8 py-3">
                         <div className="text-right">
                           <div className="text-black">نمایش اجرت</div>
                           <div className="text-gray-500 text-sm">با فعالسازی مجموع وزن همراه با اجرت نمایش داده می شود</div>
                         </div>
-                        <div className="w-1/3">
-                          <input type="checkbox"/>
-                        </div>
+                         <Switch handleChange={changeWageHandler} isChecked={user?.showWage as boolean} />
                       </div>
                       <hr className="border border-gray300 w-full mt-2"/>
                       <div className="w-full flex justify-start gap-4 mt-4 items-center">

@@ -36,6 +36,7 @@ export interface CartItemType{
     productId:string
     slug:string
     wage:number
+    sizeThumbnail?:string
 }
 
 export interface CartType{
