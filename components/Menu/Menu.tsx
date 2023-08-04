@@ -203,7 +203,7 @@ export default function Menu() {
                         </a>
                       </Link>
                       <hr className="border border-gray300 w-full mt-2"/>
-                      <div className="flex items-center justify-between gap-8 py-3">
+                      <div className="w-full flex items-center justify-between gap-8 py-3">
                         <div className="text-right">
                           <div className="text-black">نمایش اجرت</div>
                           <div className="text-gray-500 text-sm">با فعالسازی میزان اجرت نمایش داده می شود</div>

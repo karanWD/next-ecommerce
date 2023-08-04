@@ -1,6 +1,6 @@
 import axios from "axios";
 import {getCookie, removeCookies, setCookies} from "cookies-next";
-import React, {createContext, SetStateAction, useContext, useEffect, useState} from "react";
+import React, {createContext, useContext, useEffect, useState} from "react";
 import {ApiRoutes} from "../enums/ApiRoutes";
 
 type authType = {
@@ -34,8 +34,6 @@ const initialAuth: authType = {
   user: null,
 };
 
-const authContext = createContext<authType>(initialAuth);
-
 type User = {
   role?: string
   token: string;
@@ -46,6 +44,9 @@ type User = {
   shippingAddress?: string;
   phone?: string;
 };
+
+const authContext = createContext<authType>(initialAuth);
+
 
 // Provider component that wraps your app and makes auth object ...
 // ... available to any child component that calls useAuth().
@@ -72,9 +73,9 @@ function useProvideAuth() {
     }
   }, []);
 
-  // useEffect(() => {
-  //   setCookies("user", user);
-  // }, [user]);
+  useEffect(() => {
+   user && setCookies("user", user);
+  }, [user]);
 
   const register = async (
       email: string,

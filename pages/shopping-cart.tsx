@@ -98,10 +98,10 @@ const ShoppingCart = () => {
                 ) : (
                     <>
                       {
-                        cart?.products.map((item) => {
+                        cart?.products.map((item,key) => {
                           return (
                               <div className="flex flex-col gap-1 border-b-2 border-gray200 py-4"
-                                   key={item.productId}>
+                                   key={"CART_ITEM_"+item.productId+key}>
                                 <div className='flex justify-between items-start gap-2'>
                                   <div className="w-16 h-16">
                                     <Image width={300} height={300}
@@ -224,7 +224,7 @@ export const CardCounter = ({count, addHandler, deleteHandler}: {
 }) => {
   return (
       <div>
-        <div className="w-24 h-8 sm:h-auto sm:w-3/4 md:w-2/6 mx-auto flex sm:divide-x-2 divide-gray300">
+        <div className="w-24 h-8  mx-auto flex ">
           <div
               onClick={addHandler}
               className="h-full w-12 flex justify-center items-center cursor-pointer hover:bg-gray500 border border-gray300  hover:text-gray100"
