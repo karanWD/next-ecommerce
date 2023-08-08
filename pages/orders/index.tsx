@@ -22,12 +22,12 @@ const OrdersPage = () => {
         <LoadingPage loaded={!loading && response}>
           <div className="text-xl font-bold text-right p-4 pb-2 flex  items-center gap-2">
             <span>سفارشات</span>
-            <span className="flex text-sm">
-              (
-              <span>عدد</span>
-              <span>{response?.orders?.length}</span>
-              )
-            </span>
+            {/*<span className="flex text-sm">*/}
+            {/*  (*/}
+            {/*  <span>عدد</span>*/}
+            {/*  <span>{response?.orders?.length}</span>*/}
+            {/*  )*/}
+            {/*</span>*/}
           </div>
 
           {

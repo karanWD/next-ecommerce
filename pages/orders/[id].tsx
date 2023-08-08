@@ -52,7 +52,13 @@ const OrderDetail = () => {
                 <h2 className="text-xl font-bold">جزئیات سفارش</h2>
                 <div>
                   <span>تاریخ: </span>
-                  <span>{new Date(response?.createdAt).toLocaleString("fa-ir")}</span>
+                  <span>{new Date(response?.createdAt).toLocaleString("fa-ir",{
+                    year: 'numeric',
+                    month: 'numeric',
+                    day: 'numeric',
+                    hour: "2-digit",
+                    minute: "2-digit"
+                  })}</span>
                 </div>
               </div>
               <div>
@@ -67,12 +73,12 @@ const OrderDetail = () => {
                 <h4>
                   محصولات
                 </h4>
-                <div>
-                  (
-                  <span>تعداد کل:</span>
-                  <span>{response?.products.length}</span>
-                  )
-                </div>
+                {/*<div>*/}
+                {/*  (*/}
+                {/*  <span>تعداد کل:</span>*/}
+                {/*  <span>{response?.products.length}</span>*/}
+                {/*  )*/}
+                {/*</div>*/}
               </div>
 
 

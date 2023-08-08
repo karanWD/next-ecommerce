@@ -19,7 +19,7 @@ const ProductsContainer: FC<Props> = ({title, desc, products}) => {
             </div>
             <div dir="rtl">
                 <Swiper
-                    slidesPerView={1.6}
+                    slidesPerView={2}
                     spaceBetween={10}
                     loop={false}
                     navigation={true}
