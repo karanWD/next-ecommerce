@@ -82,7 +82,7 @@ const OrderDetail = () => {
               </div>
 
 
-              <div className="relative overflow-x-auto  mt-8">
+              <div className="relative overflow-x-auto  mt-4">
                 <table className="w-full text-sm  text-gray-500 text-center whitespace-nowrap">
                   <thead className="text-xs text-gray-700 uppercase bg-gray-100 ">
                   <tr>
