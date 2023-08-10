@@ -9,7 +9,7 @@ An e-commerce web application developed with Next.JS and TypeScript. Tailwind CS
 
 - Responsive Design 📱💻
 - Add To Cart 🛒
-- Different Category Page 🧑🏻👩🏻🎒
+- Different Category Page 
 - Authentication 🛡️
 - Animation ✨
 
