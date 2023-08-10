@@ -27,38 +27,38 @@ const ShoppingCart = () => {
   const {request: decrementReq} = useFetch()
   const {request: deleteReq} = useFetch()
 
-  const addHandler = (data: any) => {
-    incrementReq({
-      method: "POST",
-      url: ApiRoutes.CLIENT_CART + "/" + data.productId + "/increment",
-      data: {
-        colorId: data.colorId,
-        sizeId: data.sizeId
-      }
-    }).then((res: any) => updateCart(res))
-  }
+    const addHandler = (data: any) => {
+        incrementReq({
+            method: "POST",
+            url: ApiRoutes.CLIENT_CART + "/" + data.productId + "/increment",
+            data: {
+                colorId: data.colorId,
+                sizeId: data.sizeId
+            }
+        }).then((res: any) => updateCart(res))
+    }
 
-  const decrementHandler = (data: any) => {
-    decrementReq({
-      method: "POST",
-      url: ApiRoutes.CLIENT_CART + "/" + data.productId + "/decrement",
-      data: {
-        colorId: data.colorId,
-        sizeId: data.sizeId
-      }
-    }).then((res: any) => updateCart(res))
-  }
+    const decrementHandler = (data: any) => {
+        decrementReq({
+            method: "POST",
+            url: ApiRoutes.CLIENT_CART + "/" + data.productId + "/decrement",
+            data: {
+                colorId: data.colorId,
+                sizeId: data.sizeId
+            }
+        }).then((res: any) => updateCart(res))
+    }
 
-  const deleteHandler = (data: any) => {
-    deleteReq({
-      method: "POST",
-      url: ApiRoutes.CLIENT_CART + "/" + data.productId + "/removecolor",
-      data: {
-        colorId: data.colorId,
-        sizeId: data.sizeId
-      }
-    }).then((res: any) => updateCart(res))
-  }
+    const deleteHandler = (data: any) => {
+        deleteReq({
+            method: "POST",
+            url: ApiRoutes.CLIENT_CART + "/" + data.productId + "/removecolor",
+            data: {
+                colorId: data.colorId,
+                sizeId: data.sizeId
+            }
+        }).then((res: any) => updateCart(res))
+    }
 
 
 

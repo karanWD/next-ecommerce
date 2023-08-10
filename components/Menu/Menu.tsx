@@ -14,6 +14,7 @@ import LeftArrow from "../../public/icons/LeftArrow";
 import Switch from "../Switch/Switch";
 import useFetch from "../../hooks/useFetch";
 import {ApiRoutes} from "../../enums/ApiRoutes";
+import UserIcon from "../../public/icons/UserIcon";
 
 export default function Menu() {
   const t = useTranslations("Navigation");
@@ -212,7 +213,7 @@ export default function Menu() {
                       </div>
                       <hr className="border border-gray300 w-full mt-2"/>
                       <div className="w-full flex justify-start gap-4 mt-4 items-center">
-                        <div className="w-10 h-10 bg-gray-200 rounded-full"></div>
+                        <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-400"><UserIcon/></div>
                         <div className="text-lg font-bold text-right">{user?.fullname}</div>
                       </div>
                       <Link href="/orders">

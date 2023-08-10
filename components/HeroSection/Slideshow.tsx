@@ -24,10 +24,10 @@ const Slideshow:FC<Props> = ({images}) => {
           spaceBetween={0}
           loop={true}
           autoplay={{
-            delay: 10000,
+            delay: 7000,
             disableOnInteraction: false,
           }}
-          // navigation={true}
+          navigation={true}
           // pagination={{
           //   clickable: true,
           //   type: "fraction",

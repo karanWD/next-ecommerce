@@ -68,7 +68,7 @@ const ProductPage = () => {
             <br/>
             <br/>
             <StickyPament clickHandler={addToCartHandler} total={+size.value * count}
-                          isActive={!!size.id && !!count && !!color.id && !addReqLoading}/>
+                          isActive={!!size.id && !!count && !!color.id} loading={addReqLoading}/>
           </div>
         </LoadingPage>
       </>
