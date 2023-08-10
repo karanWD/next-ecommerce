@@ -11,6 +11,7 @@ import {toast} from "react-toastify";
 import {initialContextValues} from "../../context/cart/CartContext";
 import useFetch from "../../hooks/useFetch";
 import {useRouter} from "next/router";
+import {GetStaticProps} from "next";
 
 const CheckoutPage = () => {
   const t = useTranslations("CartWishlist");
@@ -110,7 +111,7 @@ const CheckoutPage = () => {
             <div className="flex mt-4 bg-white fixed bottom-0 left-0 right-0 px-4 py-3 border-t border-gray-300">
               <div className="text-center flex-1 py-3" onClick={() => {router.push("/shopping-cart")}}>بازگشت</div>
               <Button value={"ثبت سفارش"} size="sm" extraClass=" flex-1 " disabled={orderLoading}
-                      onClick={orderHandler}/>
+                      onClick={orderHandler} loading={orderLoading}/>
             </div>
           </main>
         </LoadingPage>
@@ -119,3 +120,12 @@ const CheckoutPage = () => {
 };
 
 export default CheckoutPage;
+
+
+export const getStaticProps: GetStaticProps = async ({locale}) => {
+  return {
+    props: {
+      messages: (await import(`../../messages/common/${locale}.json`)).default,
+    },
+  };
+};
