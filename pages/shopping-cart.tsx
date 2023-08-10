@@ -11,9 +11,7 @@ import {roundDecimal} from "../components/Util/utilFunc";
 import LoadingPage from "../components/Reusable/LoadingPage";
 import Button from "../components/Buttons/Button";
 import Drawer from "../components/Reusable/Drawer";
-import {toast} from "react-toastify";
 import {useRouter} from "next/router";
-import {initialContextValues} from "../context/cart/CartContext";
 import Image from "next/image";
 import {useAuth} from "../context/AuthContext";
 
@@ -28,7 +26,6 @@ const ShoppingCart = () => {
   const {request: incrementReq} = useFetch()
   const {request: decrementReq} = useFetch()
   const {request: deleteReq} = useFetch()
-  const {request: orderReq, loading: orderLoading} = useFetch()
 
   const addHandler = (data: any) => {
     incrementReq({
@@ -63,19 +60,7 @@ const ShoppingCart = () => {
     }).then((res: any) => updateCart(res))
   }
 
-  const orderHandler = () => {
-    orderReq({
-      url: ApiRoutes.ADD_ORDER,
-      method: "POST",
-      data: {
-        "__v": response.__v
-      }
-    }).then(res => {
-      toast.success("سفارش شما با موفقیت ثبت شد")
-      updateCart(initialContextValues.cart)
-      router.push("/orders")
-    })
-  }
+
 
   useEffect(() => {
     request({url: ApiRoutes.CLIENT_CART})
@@ -168,36 +153,36 @@ const ShoppingCart = () => {
                         </div>
                       </div>
                       <div className="mt-4 bg-white fixed bottom-0 left-0 right-0 px-4 py-3 border-t border-gray-300">
-                        <Button size="lg" value={"ثبت سفارش"} onClick={() => setSubmit(true)} extraClass={"w-full "}/>
+                        <Button size="lg" value={"ثبت سفارش"} onClick={() => router.push("/checkout")} extraClass={"w-full "}/>
                       </div>
-                      <Drawer isOpen={isSubmit} closeHandler={() => setSubmit(false)}>
-                        <div>
-                          <div className=" p-4 bg-gray-200 rounded-lg">
-                            <div className="flex justify-between">
-                            <span className="uppercase">{t("subtotal")}</span>
-                            <span>{roundDecimal(cart.totalCartWeight)}</span>
-                            </div>
-                            {
-                                user?.showWage &&
-                                <div className="flex justify-between border-t border-gray-400 mt-2 pt-2">
-                                    <span className="uppercase">{t("grand_total")}</span>
-                                    <span>{roundDecimal(cart.totalCartWeightWithWage)}</span>
-                                </div>
-                            }
-                          </div>
-                          <div className="mt-8 text-right">
-                            <h4 className="font-bold">آیا از ثبت سفارش خود مطمئن هستید؟</h4>
-                            <p>
-                              در صورت اطمینان از ثبت سفارش خود دکمه ثبت سفارش را کلیک کنید
-                            </p>
-                            <div className="mt-12 flex ">
-                              <div className="text-center flex-1 py-3" onClick={() => setSubmit(false)}>بازگشت</div>
-                              <Button value={"ثبت سفارش"} size="sm" extraClass=" flex-1 " disabled={orderLoading}
-                                      onClick={orderHandler}/>
-                            </div>
-                          </div>
-                        </div>
-                      </Drawer>
+                      {/*<Drawer isOpen={isSubmit} closeHandler={() => setSubmit(false)}>*/}
+                      {/*  <div>*/}
+                      {/*    <div className=" p-4 bg-gray-200 rounded-lg">*/}
+                      {/*      <div className="flex justify-between">*/}
+                      {/*      <span className="uppercase">{t("subtotal")}</span>*/}
+                      {/*      <span>{roundDecimal(cart.totalCartWeight)}</span>*/}
+                      {/*      </div>*/}
+                      {/*      {*/}
+                      {/*          user?.showWage &&*/}
+                      {/*          <div className="flex justify-between border-t border-gray-400 mt-2 pt-2">*/}
+                      {/*              <span className="uppercase">{t("grand_total")}</span>*/}
+                      {/*              <span>{roundDecimal(cart.totalCartWeightWithWage)}</span>*/}
+                      {/*          </div>*/}
+                      {/*      }*/}
+                      {/*    </div>*/}
+                      {/*    <div className="mt-8 text-right">*/}
+                      {/*      <h4 className="font-bold">آیا از ثبت سفارش خود مطمئن هستید؟</h4>*/}
+                      {/*      <p>*/}
+                      {/*        در صورت اطمینان از ثبت سفارش خود دکمه ثبت سفارش را کلیک کنید*/}
+                      {/*      </p>*/}
+                      {/*      <div className="mt-12 flex ">*/}
+                      {/*        <div className="text-center flex-1 py-3" onClick={() => setSubmit(false)}>بازگشت</div>*/}
+                      {/*        <Button value={"ثبت سفارش"} size="sm" extraClass=" flex-1 "*/}
+                      {/*                onClick={()=>{}}/>*/}
+                      {/*      </div>*/}
+                      {/*    </div>*/}
+                      {/*  </div>*/}
+                      {/*</Drawer>*/}
                     </>
                 )}
               </div>
