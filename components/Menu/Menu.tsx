@@ -107,8 +107,8 @@ export default function Menu() {
                             className="justify-center"
                             src="/logo/tiara-logo.png"
                             alt="Picture of the author"
-                            width={120}
-                            height={35}
+                            width={128}
+                            height={31}
                         />
                       </a>
                     </Link>
