@@ -27,39 +27,38 @@ const ShoppingCart = () => {
   const {request: decrementReq} = useFetch()
   const {request: deleteReq} = useFetch()
 
-    const addHandler = (data: any) => {
-        incrementReq({
-            method: "POST",
-            url: ApiRoutes.CLIENT_CART + "/" + data.productId + "/increment",
-            data: {
-                colorId: data.colorId,
-                sizeId: data.sizeId
-            }
-        }).then((res: any) => updateCart(res))
-    }
+  const addHandler = (data: any) => {
+    incrementReq({
+      method: "POST",
+      url: ApiRoutes.CLIENT_CART + "/" + data.productId + "/increment",
+      data: {
+        colorId: data.colorId,
+        sizeId: data.sizeId
+      }
+    }).then((res: any) => updateCart(res))
+  }
 
-    const decrementHandler = (data: any) => {
-        decrementReq({
-            method: "POST",
-            url: ApiRoutes.CLIENT_CART + "/" + data.productId + "/decrement",
-            data: {
-                colorId: data.colorId,
-                sizeId: data.sizeId
-            }
-        }).then((res: any) => updateCart(res))
-    }
+  const decrementHandler = (data: any) => {
+    decrementReq({
+      method: "POST",
+      url: ApiRoutes.CLIENT_CART + "/" + data.productId + "/decrement",
+      data: {
+        colorId: data.colorId,
+        sizeId: data.sizeId
+      }
+    }).then((res: any) => updateCart(res))
+  }
 
-    const deleteHandler = (data: any) => {
-        deleteReq({
-            method: "POST",
-            url: ApiRoutes.CLIENT_CART + "/" + data.productId + "/removecolor",
-            data: {
-                colorId: data.colorId,
-                sizeId: data.sizeId
-            }
-        }).then((res: any) => updateCart(res))
-    }
-
+  const deleteHandler = (data: any) => {
+    deleteReq({
+      method: "POST",
+      url: ApiRoutes.CLIENT_CART + "/" + data.productId + "/removecolor",
+      data: {
+        colorId: data.colorId,
+        sizeId: data.sizeId
+      }
+    }).then((res: any) => updateCart(res))
+  }
 
 
   useEffect(() => {
@@ -83,15 +82,19 @@ const ShoppingCart = () => {
                 ) : (
                     <>
                       {
-                        cart?.products.map((item,key) => {
+                        cart?.products.map((item, key) => {
                           return (
                               <div className="flex flex-col gap-1 border-b-2 border-gray200 py-4"
-                                   key={"CART_ITEM_"+item.productId+key}>
+                                   key={"CART_ITEM_" + item.productId + key}>
                                 <div className='flex justify-between items-start gap-2'>
                                   <div className="w-16 h-16">
-                                    <Image width={300} height={300}
-                                           src={item.sizeThumbnail ?? "/images/img1.png" as string}
-                                           layout="responsive"/>
+                                    <Link href={"/products/" + item.slug} passHref>
+                                      <a>
+                                        <Image width={300} height={300}
+                                               src={item.sizeThumbnail ?? "/images/img1.png" as string}
+                                               layout="responsive"/>
+                                      </a>
+                                    </Link>
                                   </div>
                                   <div className="flex flex-col flex-1">
                                     <Link href={"/products/" + item.slug}><a>{item.title}</a></Link>
@@ -144,7 +147,7 @@ const ShoppingCart = () => {
                             <span>{roundDecimal(cart.totalCartWeight)}</span>
                           </div>
                           {
-                            user?.showWage &&
+                              user?.showWage &&
                               <div className="flex justify-between py-3">
                                   <span>{t("grand_total")}</span>
                                   <span>{roundDecimal(cart.totalCartWeightWithWage)}</span>
@@ -153,7 +156,8 @@ const ShoppingCart = () => {
                         </div>
                       </div>
                       <div className="mt-4 bg-white fixed bottom-0 left-0 right-0 px-4 py-3 border-t border-gray-300">
-                        <Button size="lg" value={"ثبت سفارش"} onClick={() => router.push("/checkout")} extraClass={"w-full "}/>
+                        <Button size="lg" value={"ثبت سفارش"} onClick={() => router.push("/checkout")}
+                                extraClass={"w-full "}/>
                       </div>
                       {/*<Drawer isOpen={isSubmit} closeHandler={() => setSubmit(false)}>*/}
                       {/*  <div>*/}
